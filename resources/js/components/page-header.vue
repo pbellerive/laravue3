@@ -1,0 +1,144 @@
+<template>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative bg-black text-white">
+  <div class=" mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center border-b-2 border-gray-100 py-2 lg:justify-start lg:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+          <span class="sr-only">laravue</span>
+          <router-link to="/">
+              <img src="/images/site-icon.jpg" class="hidden sm:inline w-10 sm:w-10">
+              <img src="/images/site-icon.jpg" class="sm:hidden w-20" width="32px">
+          </router-link>
+      </div>
+      <div v-if="show" class="-mr-2 -my-2 lg:hidden">
+        <button @click="openMenu()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <nav v-if="show"  class="hidden lg:flex space-x-10 text-xl lg:text-2xl font-medium">
+        <router-link to="/item1" class=" text-gray-300 hover:text-white">
+          {{$tc('items 1', 2)}}
+        </router-link>
+        <router-link to="/item2" class="text-gray-300 hover:text-white">
+          {{$tc('item 2', 2)}}
+        </router-link>
+        <router-link to="/item3" class="text-gray-300 hover:text-white">
+          {{$tc('item3',2)}}
+        </router-link>
+      </nav>
+      <div v-if="show" class="hidden lg:flex lg:flex-1 w-0 justify-end">
+        <t-button to="/profile" classes="ml-8 whitespace-nowrap inline-flex w-0 ">
+            <i class="fas fa-user-circle text-gray-300 hover:text-white"></i>
+        </t-button>
+        <t-button @click="logout()" classes="ml-8 whitespace-nowrap inline-flex w-0">
+            <i class="fas fa-sign-out-alt text-gray-300 hover:text-white"></i>
+        </t-button>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Mobile menu, show/hide based on mobile menu state.
+
+    Entering: "duration-200 ease-out"
+      From: "opacity-0 scale-95"
+      To: "opacity-100 scale-100"
+    Leaving: "duration-100 ease-in"
+      From: "opacity-100 scale-100"
+      To: "opacity-0 scale-95"
+  -->
+  <div v-if="show" :class="{hidden: !showMobileMenu}" class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50">
+    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+      <div class="pt-5 pb-6 px-5">
+        <div class="flex items-center justify-between">
+           <router-link to="/">
+              <img src="/images/site-icon.jpg" class="hidden sm:inline w-48 sm:w-60">
+              <img src="/images/site-icon.jpg" class="sm:hidden w-20">
+          </router-link>
+          <div class="-mr-2">
+            <button @click="closeMenu()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <span class="sr-only">Close menu</span>
+              <!-- Heroicon name: outline/x -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="mt-6">
+          <nav class="grid gap-y-8">
+                <router-link to="/programs" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('program', 2)}}
+                </router-link>
+                <router-link to="/trainings" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('training', 2)}}
+                </router-link>
+                <router-link to="/exercises" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('exercise',2)}}
+                </router-link>
+          </nav>
+        </div>
+      </div>
+      <div class="py-6 px-5 space-y-6">
+        <div class="grid grid-cols-2 gap-y-4 gap-x-8">
+        </div>
+        <div>
+          <router-link to="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-jem-500 bg-green-jem-600 hover:bg-green-jem-700">
+               {{$t('register')}}
+          </router-link>
+          <p class="mt-6 text-center text-base font-medium text-gray-500">
+            <router-link to="/login" @click.native="closeMenu()" class="text-green-jem-800 hover:text-indigo-500">
+               {{$t('login')}}
+            </router-link>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</template>
+
+<script>
+    import Login from './authentification/login';
+
+    export default {
+        components: {
+            'login': Login,
+        },
+        computed: {
+            show() {
+                return  this.$router && this.$router.currentRoute && this.$router.currentRoute.name != 'register'
+                            && this.$router.currentRoute.name != 'login'
+            }
+        },
+        data() {
+            return {
+                showMobileMenu: false
+            }
+        },
+        methods: {
+            openMenu() {
+                this.showMobileMenu = true;
+            },
+            closeMenu() {
+                this.showMobileMenu = false;
+            },
+            logout() {
+                axios.post('logout')
+                    .then(response => {
+                        this.$store.commit('session/logout');
+                        this.$router.push('/');
+                    })
+            }
+        },
+    }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
