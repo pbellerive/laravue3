@@ -11,7 +11,7 @@
                     {{$t('register')}}
                 </h1>
                 <!-- ******************************************** -->
-                 <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-green-jem-500">
+                 <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-green-500">
                     <div class="grid grid-cols-2 my-4">
                         <div class=" mr-1">
                             <t-input-group :label="$t('firstName')" :feedback="getError('first_name')">

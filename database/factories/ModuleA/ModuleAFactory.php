@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Exercises;
 
-use App\TrainingType;
+use App\Exercises\Exercise;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TrainingTypeFactory extends Factory
+class ModuleAFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TrainingType::class;
+    protected $model = Exercise::class;
 
     /**
      * Define the model's default state.
@@ -21,8 +21,6 @@ class TrainingTypeFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+
     }
 }

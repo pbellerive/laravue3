@@ -52,7 +52,7 @@ const settings = {
         textWrapper: 'text-left w-full text-black',
         text: '',
 
-        okButton: 'float-left block px-4 py-2 text-white transition duration-100 ease-in-out bg-green-jem-500 border border-transparent rounded shadow-sm hover:bg-green-jem-600 focus:border-green-jem-500 focus:ring-2 focus:ring-green-jem-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed w-full max-w-xs',
+        okButton: 'float-left block px-4 py-2 text-white transition duration-100 ease-in-out bg-green-500 border border-transparent rounded shadow-sm hover:bg-green-600 focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed w-full max-w-xs',
 
         inputWrapper: 'mt-3 flex items-center space-x-3',
 
@@ -119,14 +119,14 @@ const settings = {
   't-button': {
     component: TButton,
     props: {
-      fixedClasses: 'text-gray-jem-800 mx-1 font-bold rounded-md block px-1 md:px-4 py-1 md:py-2 transition duration-100 ease-in-out focus:border-gray-jem-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed',
+      fixedClasses: 'text-gray-800 mx-1 font-bold rounded-md block px-1 md:px-4 py-1 md:py-2 transition duration-100 ease-in-out focus:border-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed',
       classes: '',
       variants: {
-        primary: 'bg-green-jem-500 text-white border border-green-jem-300 shadow-sm hover:bg-green-jem-600',
-        secondary: 'bg-green-jem-300 text-white border border-green-jem-100 shadow-sm hover:bg-green-jem-400',
-        link: 'text-green-jem-500 underline hover:text-green-jem-600',
+        primary: 'bg-green-500 text-white border border-green-300 shadow-sm hover:bg-green-600',
+        secondary: 'bg-green-300 text-white border border-green-100 shadow-sm hover:bg-green-400',
+        link: 'text-green-500 underline hover:text-green-600',
         danger: 'text-white bg-red-400 border border-transparent rounded shadow-sm hover:bg-red-600',
-        base: 'border border-gray-jem-300 hover:bg-gray-jem-300'
+        base: 'border border-gray-300 hover:bg-gray-300'
       }
     }
   },
@@ -160,14 +160,14 @@ const settings = {
         label: 'block mb-2',
         body: '',
         feedback: ' text-sm text-sm',
-        description: 'text-gray-jem-400 text-sm'
+        description: 'text-gray-400 text-sm'
       },
       classes: {
         wrapper: '',
         label: '',
         body: '',
         feedback: 'text-red-400',
-        description: 'text-gray-jem-400'
+        description: 'text-gray-400'
       },
       variants: {
         danger: {
@@ -175,8 +175,8 @@ const settings = {
           feedback: 'text-red-500'
         },
         success: {
-          label: 'text-green-jem-500',
-          feedback: 'text-green-jem-500'
+          label: 'text-green-500',
+          feedback: 'text-green-500'
         }
       }
     }

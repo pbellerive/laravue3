@@ -71,14 +71,14 @@
         </div>
         <div class="mt-6">
           <nav class="grid gap-y-8">
-                <router-link to="/programs" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    {{$tc('program', 2)}}
+                <router-link to="/a" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('a', 2)}}
                 </router-link>
-                <router-link to="/trainings" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    {{$tc('training', 2)}}
+                <router-link to="/b" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('b', 2)}}
                 </router-link>
-                <router-link to="/exercises" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    {{$tc('exercise',2)}}
+                <router-link to="/c" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{$tc('c',2)}}
                 </router-link>
           </nav>
         </div>
@@ -87,11 +87,11 @@
         <div class="grid grid-cols-2 gap-y-4 gap-x-8">
         </div>
         <div>
-          <router-link to="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-jem-500 bg-green-jem-600 hover:bg-green-jem-700">
+          <router-link to="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-500 bg-green-600 hover:bg-green-700">
                {{$t('register')}}
           </router-link>
           <p class="mt-6 text-center text-base font-medium text-gray-500">
-            <router-link to="/login" @click.native="closeMenu()" class="text-green-jem-800 hover:text-indigo-500">
+            <router-link to="/login" @click.native="closeMenu()" class="text-green-800 hover:text-indigo-500">
                {{$t('login')}}
             </router-link>
           </p>
@@ -132,7 +132,8 @@
                 axios.post('logout')
                     .then(response => {
                         this.$store.commit('session/logout');
-                        this.$router.push('/');
+                    }).finally(() => {
+                        this.$router.push('/login');
                     })
             }
         },

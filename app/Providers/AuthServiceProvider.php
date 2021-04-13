@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,8 +16,6 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Exercises\Exercise' => 'App\Policies\ExercisePolicy',
-        'App\Trainings\Training' => 'App\Policies\TrainingPolicy',
         'App\Users\User' => 'App\Policies\UserPolicy',
     ];
 
@@ -27,6 +28,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)->view('auth.verification-email',[
+                'url' => $url
+            ])
+            ->subject(\Lang::get('Verify Email Address'));
+            // ->line('Click the button below to verify your email address.')
+            // ->action('Verify Email Address', $url);
+        });
+
+        ResetPassword::createUrlUsing(function ($user, string $token) {
+            return config('app.url') . '/reset-password?token='.$token . '&email=' . $user->email ;
+        });
     }
 }

@@ -17,39 +17,16 @@ class CreateRolesPermissions extends Migration
     {
 
         $roleAdmin = Role::create(['name' => 'admin']);
-        $roleClient = Role::create(['name' => 'client']);
-        $roleCoach = Role::create(['name' => 'coach']);
 
-        $permission = Permission::create(['name' => 'view']);
-        $permission = Permission::create(['name' => 'create']);
-        $permission = Permission::create(['name' => 'update']);
-        $permission = Permission::create(['name' => 'delete']);
+        $permissionView = Permission::create(['name' => 'view']);
+        $permissionCreate = Permission::create(['name' => 'create']);
+        $permissionUpdate = Permission::create(['name' => 'update']);
+        $permissionDelete = Permission::create(['name' => 'delete']);
 
-        $permissionViewExercise = Permission::create(['name' => 'view exercise']);
-        $permissionCreateExercise = Permission::create(['name' => 'create exercise']);
-        $permissionUpdateExercise = Permission::create(['name' => 'update exercise']);
-        $permissionDeleteExercise = Permission::create(['name' => 'delete exercise']);
-
-        $permissionViewTraining = Permission::create(['name' => 'view training']);
-        $permissionCreateTraining = Permission::create(['name' => 'create training']);
-        $permissionUpdateTraining = Permission::create(['name' => 'update training']);
-        $permissionDeleteTraining = Permission::create(['name' => 'delete training']);
-
-        $permissionViewProgram = Permission::create(['name' => 'view program']);
-        $permissionCreateProgram = Permission::create(['name' => 'create program']);
-        $permissionUpdateProgram = Permission::create(['name' => 'update program']);
-        $permissionDeleteProgram = Permission::create(['name' => 'delete program']);
-
-        //Ajout des permissions aux roles.  Admin n'a aucune permission , dans les policy il est gérer comme tel dans les before l'admin retourne toujours TRUE pour une permisssion
-        //La gestion par la bd , permet une meilleur flexibilité pour modifier rapidement les permissions
-        $roleClient->givePermissionTo($permissionViewExercise);
-        $roleClient->givePermissionTo($permissionViewTraining);
-        $roleClient->givePermissionTo($permissionViewProgram);
-
-        $roleCoach->givePermissionTo($permissionCreateExercise);
-        $roleCoach->givePermissionTo($permissionUpdateExercise);
-        $roleCoach->givePermissionTo($permissionDeleteExercise);
-        $roleCoach->givePermissionTo($permissionViewExercise);
+        $roleAdmin->givePermissionTo($permissionView);
+        $roleAdmin->givePermissionTo($permissionCreate);
+        $roleAdmin->givePermissionTo($permissionUpdate);
+        $roleAdmin->givePermissionTo($permissionDelete);
     }
 
     /**

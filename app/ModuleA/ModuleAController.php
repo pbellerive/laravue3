@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 use App\ModuleA\ModuleARepository;
 
-use function App\Helpers\resizeImage;
 
 class ModuleAController extends Controller
 {
@@ -36,39 +35,34 @@ class ModuleAController extends Controller
     {
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ModuleA $exercise)
+
+    public function show(ModuleA $module)
     {
-        return $exercise;
+        return $module;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Exercise  $exercise
+     * @param  \App\Models\ModuleA  $module
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModuleA $exercise)
+    public function update(Request $request, ModuleA $module)
     {
     }
 
-    public function uploadVideo(Request $request, ModuleA $exercise)
+    public function uploadVideo(Request $request, ModuleA $module)
     {
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Exercise  $exercise
+     * @param  \App\Models\ModuleA  $module
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModuleA $exercise)
+    public function destroy(ModuleA $module)
     {
     }
 }

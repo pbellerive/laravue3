@@ -23,6 +23,5 @@
     </body>
 
     <script src="{{mix('/js/app.js')}}"></script>
-    <script src="https://player.vimeo.com/api/player.js">
     </script>
 </html>

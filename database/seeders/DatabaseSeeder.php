@@ -14,9 +14,5 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('Database\Seeders\UserSeeder');
-        $this->call('Database\Seeders\MuscleSeeder');
-        $this->call('Database\Seeders\ExerciseSeeder');
-        $this->call('Database\Seeders\TrainingSeeder');
-        $this->call('Database\Seeders\ExerciseTrainingSeeder');
     }
 }

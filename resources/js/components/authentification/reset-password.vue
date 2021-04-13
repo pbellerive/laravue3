@@ -1,9 +1,9 @@
 <template>
-    <div class="bgLogin">
+    <div class="bgLogin bg-cover bg-no-repeat">
          <div class="grid grid-cols-2 p-3">
             <div>
-                 <router-link to="/">
-                    <img src="/images/site-icon.jpg" class="w-10 sm:w-10">
+                <router-link to="/">
+                    <img src="/images/logo_here.png" class="w-48 sm:w-60">
                 </router-link>
             </div>
             <div class="flex flex-row justify-end text-white">
@@ -19,17 +19,18 @@
                 {{$t('login')}}
             </h1>
             <div class="mb-2 w-full">
-                <t-input @keypress.enter="login()" v-model="credentials.email" type="text" :placeholder="$t('email')" class="w-full"/>
+                 <input type="hidden" name="token" v-model="credentials.token">
+                <t-input @keypress.enter="reset()" v-model="credentials.email" type="text" :placeholder="$t('email')" class="w-full"/>
             </div>
             <div class="w-full">
-                <t-input @keypress.enter="login()" v-model="credentials.password" type="password"  :placeholder="$t('password')" class="w-full" />
+                <t-input @keypress.enter="reset()" v-model="credentials.password" type="password"  :placeholder="$t('newPassword')" class="w-full" />
             </div>
             <div class="w-full">
-                <t-button @click="login()" variant="primary" class="w-full">
-                    {{$t('login')}}
-                </t-button>
-                <t-button to="/forgot-password">
-                    <span class="text-gray-100 hover:text-green-300">{{$t('forgotPassword')}} </span>
+                <t-input @keypress.enter="reset()" v-model="credentials.password_confirmation" type="password"  :placeholder="$t('passwordConfirmation')" class="w-full" />
+            </div>
+            <div class="w-full mt-8">
+                <t-button @click="reset()" variant="primary" class="w-full">
+                    {{$t('resetPassword')}}
                 </t-button>
             </div>
         </div>
@@ -44,22 +45,17 @@
             return {
                 credentials: {
                     email: '',
-                    password: ''
+                    password: '',
+                    password_confirmation: '',
+                    token: ''
                 }
             }
         },
         methods: {
-            login() {
-                axios.get('sanctum/csrf-cookie', {baseURL: '/'}).then(response => {
-                    this.authenticate();
-                });
-            },
-            authenticate() {
-                axios.post('login', this.credentials)
+            reset() {
+                axios.post('reset-password', this.credentials)
                     .then(response => {
-                        this.$store.commit('session/setUser', response.data.user);
-                        this.$store.commit('session/setToken', response.data.token);
-                        this.$router.push('/');
+                        this.$router.push('/login');
                     })
                     .catch(error => {
                         this.$root.$refs.$notification.show({
@@ -69,6 +65,10 @@
                         });
                     })
             }
+        },
+        mounted() {
+            this.credentials.token = this.$router.currentRoute.query.token;
+            this.credentials.email = this.$router.currentRoute.query.email;
         }
     }
 </script>
@@ -76,7 +76,5 @@
 <style lang="css" scoped>
     .bgLogin {
         background-image: url('/images/jumpbox.jpg');
-        background-repeat: none;
-        background-size: cover;
     }
 </style>
