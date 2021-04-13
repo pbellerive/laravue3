@@ -145,7 +145,7 @@
                             'text': this.$i18n.t('successfulSaving'),
                             'variant': 'success'
                         });
-                        this.$router.push('/dashboard');
+                        this.$router.push('/');
                     }).catch(error => {
                         this.$root.$refs.$notification.show({
                             'title': this.$i18n.t('saving'),

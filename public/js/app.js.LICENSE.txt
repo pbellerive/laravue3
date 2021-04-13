@@ -10,13 +10,6 @@
  * @license MIT
  */
 
-/*!
- * weakmap-polyfill v2.0.1 - ECMAScript6 WeakMap polyfill
- * https://github.com/polygonplanet/weakmap-polyfill
- * Copyright (c) 2015-2020 Polygon Planet <polygon.planet.aqua@gmail.com>
- * @license MIT
- */
-
 /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -31,13 +24,6 @@
     OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
-
-/*! @vimeo/player v2.15.0 | (c) 2021 Vimeo | MIT License | https://github.com/vimeo/player.js */
-
-/*! Native Promise Only
-    v0.8.1 (c) Kyle Simpson
-    MIT License: http://getify.mit-license.org
-*/
 
 /**
  * @license
