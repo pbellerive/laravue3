@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories\Exercises;
+namespace Database\Factories\ModuleA;
 
-use App\Exercises\Exercise;
+use App\ModuleA\ModelA;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ModuleAFactory extends Factory
@@ -12,7 +12,7 @@ class ModuleAFactory extends Factory
      *
      * @var string
      */
-    protected $model = Exercise::class;
+    protected $model = ModelA::class;
 
     /**
      * Define the model's default state.
