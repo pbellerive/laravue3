@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "laravue/laravue",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Laravue Starter Framework.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "laravue"
     ],
     "license": "MIT",
     "require": {
