@@ -40,13 +40,12 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Illuminate\Session\Middleware\StartSession::class,
-
+            \Illuminate\Session\Middleware\StartSession::class,
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\LanguageConfiguration::class,
-            // \App\Http\Middleware\VerifyCsrfToken::class,    // Doit avoir une session. donc a implementer avec le token.
+            \App\Http\Middleware\VerifyCsrfToken::class,    // Doit avoir une session. donc a implementer avec le token.
         ],
     ];
 

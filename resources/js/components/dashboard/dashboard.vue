@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto flex flex-col">
+    <div v-if="currentUser" class="container mx-auto flex flex-col">
         <header class="text-center text-3xl">
             Bonjour {{currentUser.fullName}}
         </header>

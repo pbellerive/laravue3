@@ -31,9 +31,8 @@ class LoginController extends Controller
         return response('', 401);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        \Auth::user()->currentAccessToken()->delete();
-
+        \Auth::guard('web')->logout();
     }
 }
