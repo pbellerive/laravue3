@@ -1,6 +1,5 @@
 module.exports = {
-  purge: [
-    'node_modules/vue-tailwind/dist/*.js',
+  content: [
     './tailwind.config.js',
     './resources/**/*.blade.php',
     './resources/**/js/components/authentification/*.vue',
@@ -10,17 +9,14 @@ module.exports = {
     './resources/**/js/components/user/*.vue',
     './resources/**/js/components/*.vue',
     './resources/**/js/bootstrap.js',
-    'resources/**/js/vueTailwindBootStrap.js'
+    'resources/**/js/vueTailwindBootStrap.js',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-    },
+    extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require('@tailwindcss/forms')],
+};

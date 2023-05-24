@@ -11,7 +11,7 @@
 
     <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-green-500">
       <div class="grid grid-cols-2 my-4">
-        <div class=" mr-1">
+        <div class="mr-1">
           <label for="firstName" class="block mb-2">{{ $t('firstName') }}</label>
           <t-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" />
         </div>
@@ -98,6 +98,8 @@
 
 <script>
 import { VInput } from 'laravue-ui-components/src/components';
+import { fetchCurrentUser } from '../composites/user';
+import { useSessionStore } from '../../store/modules/session';
 
 export default {
   components: {
@@ -116,19 +118,19 @@ export default {
   },
   methods: {
     fetchCountries() {
-      axios.get('countries').then(response => {
+      axios.get('countries').then((response) => {
         this.countries = response.data.data;
       });
     },
     fetchStates() {
-      axios.get('states').then(response => {
+      axios.get('states').then((response) => {
         this.states = response.data.data;
       });
     },
     save() {
       axios
         .patch('users/' + this.user.id, this.user)
-        .then(response => {
+        .then((response) => {
           this.$root.$refs.$notification.show({
             title: this.$i18n.t('saving'),
             text: this.$i18n.t('successfulSaving'),
@@ -136,7 +138,7 @@ export default {
           });
           this.$router.push('/');
         })
-        .catch(error => {
+        .catch((error) => {
           this.$root.$refs.$notification.show({
             title: this.$i18n.t('saving'),
             text: this.$i18n.t('errorOccur'),
@@ -146,8 +148,9 @@ export default {
     },
   },
   mounted() {
-    this.fetchCurrentUser().then(response => {
-      this.user = response.data;
+    fetchCurrentUser().then((response) => {
+      const store = userSessionStore();
+      store.setUser(response.data);
     });
   },
 };

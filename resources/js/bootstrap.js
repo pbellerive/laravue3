@@ -1,11 +1,9 @@
 var Vue = require('vue').default;
 import router from './router';
-import store from './store';
-import { mapGetters } from 'vuex';
 
-import Notification from './components/ui/notification';
-import VueTailwind from 'vue-tailwind';
+// import Notification from './components/ui/notification';
 import i18n from './translations/i18n';
+import mitt from 'mitt';
 
 window._ = require('lodash');
 
@@ -37,82 +35,104 @@ axios.defaults.withCredentials = true;
 //   return Promise.reject(error);
 // });
 
-let exceptRoutesName = [
-  'login',
-  'register',
-  'home',
-  'root'
-]
-axios.interceptors.response.use(function (response) {
-  return response
-}, function (error) {
-    let except =  exceptRoutesName.findIndex((element) => {
-      return element == router.currentRoute.name;
-    }) == -1;
+import { useSessionStore } from './store/modules/session';
+
+let exceptRoutesName = ['login', 'register', 'home', 'root'];
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    let except =
+      exceptRoutesName.findIndex((element) => {
+        return element == router.currentRoute.name;
+      }) == -1;
 
     if (error.response.status === 401 && except) {
-      store.commit('session/logout');
-      // localStorage.token = undefined;
-      router.push('/')
+      const store = useSessionStore();
+      store.logout();
+      router.push('/');
+    }
+    return Promise.reject(error);
   }
-  return Promise.reject(error)
-})
+);
 //global components
 
-import PageHeader from "./components/page-header.vue"
-import settings from './vueTailwindBootStrap';
+import PageHeader from './components/page-header.vue';
+import VueUi from 'laravue-ui-components/src';
+import VueUiSettings from './vueTailwindBootStrap';
 
-Vue.use(VueTailwind, settings)
+// Vue.mixin({
+//   computed: {
+//     ...mapGetters('session', [
+//       'currentUser', // -> this['some/nested/module/someGetter']
+//     ])
+//   },
+//   data() {
+//     return {
+//       showAlert : false
+//     }
+//   },
+//   methods: {
+//     $notification() {
+//       return this.$root.$refs.$notification;
+//     },
+//     setLocale(locale) {
+//       this.$i18n.locale = locale;
+//     },
+//     toggleAlert() {
+//         this.showAlert = true;
+//     },
+//     fetchCurrentUser() {
+//       if ((this.$router.currentRoute.name != 'register' && this.$router.currentRoute.name != 'login') && localStorage.token) {
+//         return axios.get('user')
+//           .then(response => {
+//             this.$store.commit('session/setUser', response.data);
+//             return response;
+//           })
+//       }
+//     }
 
-Vue.mixin({
-  computed: {
-    ...mapGetters('session', [
-      'currentUser', // -> this['some/nested/module/someGetter']
-    ])
-  },
-  data() {
-    return {
-      showAlert : false
-    }
-  },
-  methods: {
-    $notification() {
-      return this.$root.$refs.$notification;
-    },
-    setLocale(locale) {
-      this.$i18n.locale = locale;
-    },
-    toggleAlert() {
-        this.showAlert = true;
-    },
-    fetchCurrentUser() {
-      if ((this.$router.currentRoute.name != 'register' && this.$router.currentRoute.name != 'login') && localStorage.token) {
-        return axios.get('user')
-          .then(response => {
-            this.$store.commit('session/setUser', response.data);
-            return response;
-          })
-      }
-    }
+//   },
+// });
 
-  },
-});
+// new Vue({
+//   el: '#app',
+//   store,
+//   i18n,
+//   components: {
+//     'page-header': PageHeader,
+//     'notification': Notification
+//   },
+//   router,
+//   created() {
+//     this.fetchCurrentUser();
+//   }
+// })
 
-new Vue({
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+
+const pinia = createPinia();
+
+const app = createApp({
   el: '#app',
-  store,
-  i18n,
   components: {
     'page-header': PageHeader,
-    'notification': Notification
+    // notification: Notification,
+    // loading: Loading,
   },
-  router,
-  created() {
-    this.fetchCurrentUser();
-  }
 })
+  .use(router)
+  .use(i18n)
+  .use(pinia)
+  // .mixin(mixin)
+  .use(VueUi, VueUiSettings);
 
+const emitter = mitt();
+app.provide('emitter', emitter);
 
+app.mount('#app');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

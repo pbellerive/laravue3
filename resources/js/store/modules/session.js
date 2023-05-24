@@ -1,35 +1,28 @@
-const state = {
-  user: undefined,
-  token: undefined
-};
-
-const  mutations = {
-  logout: function(state) {
-    state.user = undefined;
-    state.token = undefined;
+import { defineStore } from 'pinia';
+export const useSessionStore = defineStore('session', {
+  state: () => ({
+    user: undefined,
+    token: undefined,
+  }),
+  action: {
+    logout: function () {
+      this.user = undefined;
+      this.token = undefined;
+    },
+    setUser: function (user) {
+      this.user = user;
+    },
+    setToken: function (token) {
+      this.token = token;
+      localStorage.token = token;
+    },
   },
-  setUser: function(state, user) {
-    state.user = user;
+  getters: {
+    isAuthenticated: function () {
+      return this.user && this.token;
+    },
+    currentUser: function () {
+      return this.user;
+    },
   },
-  setToken: function(state, token) {
-    state.token = token;
-    localStorage.token = token;
-  }
-};
-
-
-const getters = {
-  isAuthenticated: function (state) {
-    return state.user && state.token;
-  },
-  currentUser: function(state) {
-    return state.user;
-  }
-};
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations
-}
+});

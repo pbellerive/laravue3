@@ -18,7 +18,7 @@
                 <footer>
 
                 </footer>
-                <notification ref="$notification"></notification>
+                <!-- <notification ref="$notification"></notification> -->
             </div>
     </body>
 

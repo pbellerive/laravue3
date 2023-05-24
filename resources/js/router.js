@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import Dashboard from './components/dashboard/dashboard';
 import Home from './components/home';
@@ -8,12 +8,10 @@ import Register from './components/authentification/register';
 import ForgotPassword from './components/authentification/forgot-password';
 import ResetPassword from './components/authentification/reset-password';
 import Error404 from './components/error/404';
-import ProfileEdit from './components/user/edit'
+import ProfileEdit from './components/user/edit';
 
-Vue.use(VueRouter);
-
-var router  = new VueRouter({
-  mode: 'history',
+var router = new createRouter({
+  history: createWebHistory(),
   routes: [
     // { path: '/', component: Home, name: 'root' },
     { path: '/home', component: Home, name: 'home' },
@@ -24,8 +22,8 @@ var router  = new VueRouter({
     { path: '/reset-password', component: ResetPassword, name: 'reset-password' },
     { path: '/profile', component: ProfileEdit },
 
-    { path: '*', component: Error404},
-  ]
+    { path: '/:pathMatch(.*)*', component: Error404 },
+  ],
 });
 
 export default router;

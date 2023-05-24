@@ -1,17 +1,14 @@
-import Vue from 'vue'
-import VueI18n from 'vue-i18n'
+import { createI18n } from 'vue-i18n';
 
-let messages = require('./translations.js').default
-
-Vue.use(VueI18n)
+let messages = require('./translations.js').default;
 
 // Create VueI18n instance with options
-const i18n = new VueI18n({
+const i18n = createI18n({
   locale: 'fr', // set locale
   fallback: 'en',
-  messages
+  allowComposition: true,
+  messages,
   // set locale messages
-})
+});
 
-
-export default i18n
+export default i18n;

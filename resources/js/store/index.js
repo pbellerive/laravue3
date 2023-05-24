@@ -1,34 +1,24 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import session from './modules/session'
+import { defineStore } from 'pinia';
 
-Vue.use(Vuex)
-
-
-export default new Vuex.Store({
-  actions: {
-  },
-  getters: {
-    isLoading: function (state) {
-      return state.isLoading;
-    },
-    locale: function (state) {
-      return state.locale
-    }
-  },
-  state: {
+export const useMainStore = defineStore('main', {
+  state: () => ({
     isLoading: false,
     locale: 'fr',
-  },
-  mutations: {
-    startLoading(state) {
-      state.isLoading = true;
+  }),
+  actions: {
+    startLoading() {
+      this.isLoading = true;
     },
-    stopLoading(state) {
-      state.isLoading = false;
-    }
+    stopLoading() {
+      this.isLoading = false;
+    },
   },
-  modules: {
-    session: session,
-  }
-})
+  getters: {
+    isLoading: function () {
+      return this.isLoading;
+    },
+    locale: function () {
+      return this.locale;
+    },
+  },
+});
