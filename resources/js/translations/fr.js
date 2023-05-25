@@ -1,14 +1,13 @@
 const fr = {
-
   delete: 'Supprimer',
   edit: 'Modifier',
   email: 'Courriel',
-  errorOccur: 'Une erreur s\'est produite',
+  errorOccur: "Une erreur s'est produite",
   login: 'Connexion',
   name: 'Nom',
   none: 'Aucun',
   password: 'Mot de passe',
-  register: 'S\'enregistrer',
+  register: "S'enregistrer",
   save: 'Enregistrer',
   saving: 'Enregistrement',
   start: 'Démarrer',
@@ -19,7 +18,7 @@ const fr = {
   deleting: 'Suppression',
   successfulDelete: 'Suppression réussi',
   add: 'Ajouter',
-  registrationDisabled: 'L\'inscription sera bientôt disponible!',
+  registrationDisabled: "L'inscription sera bientôt disponible!",
   manageProfile: 'Gestion du profils de {name}',
   firstName: 'Prénom',
   lastName: 'Nom de famille',
@@ -35,7 +34,10 @@ const fr = {
   cellPhoneNumber: 'Téléphone cellulaire',
   fr: 'Français',
   en: 'Anglais',
-  preferredLocale: 'Langue de préférence'
+  preferredLocale: 'Langue de préférence',
+  resetPassword: 'Modifier mon mot de passe',
+  sendPasswordResetLink: 'Demander un nouveau',
+  newPassword: 'Nouveau mot de passe',
 };
 
 export default fr;

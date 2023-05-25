@@ -1,5 +1,4 @@
 const en = {
-
   delete: 'Delete',
   edit: 'Edit',
   email: 'Email',
@@ -35,7 +34,9 @@ const en = {
   cellPhoneNumber: 'Cellphone Number',
   fr: 'French',
   en: 'English',
-  preferredLocale: 'Preferred Language'
+  preferredLocale: 'Preferred Language',
+  resetPassword: 'Reset my password',
+  newPassword: 'New Password',
 };
 
 export default en;

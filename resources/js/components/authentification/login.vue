@@ -1,11 +1,6 @@
 <template>
   <div class="bgLogin">
-    <div class="grid grid-cols-2 p-3">
-      <div>
-        <router-link to="/">
-          <img src="/images/site-icon.jpg" class="w-10 sm:w-10" />
-        </router-link>
-      </div>
+    <div class="grid p-3">
       <div class="flex flex-row justify-end text-white">
         <div class="flex-initial mr-1">
           <v-button to="/register" class="uppercase hover:text-green-500">
@@ -43,7 +38,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useSessionStore } from '../../store/modules/session';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { VButton, VInput } from 'laravue-ui-components/src/components';
 
 const session = useSessionStore();
