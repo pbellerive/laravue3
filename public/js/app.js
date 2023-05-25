@@ -22493,7 +22493,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'login',
   setup: function setup(__props, _ref) {
-    var _this = this;
     var __expose = _ref.expose;
     __expose();
     var session = (0,_store_modules_session__WEBPACK_IMPORTED_MODULE_1__.useSessionStore)();
@@ -22503,14 +22502,10 @@ __webpack_require__.r(__webpack_exports__);
       password: ''
     });
     var login = function login() {
-      axios.get('sanctum/csrf-cookie', {
-        baseURL: '/'
-      }).then(function (response) {
-        _this.authenticate();
-      });
+      authenticate();
     };
     var authenticate = function authenticate() {
-      axios.post('login', _this.credentials).then(function (response) {
+      axios.post('login', credentials.value).then(function (response) {
         session.setUser(response.data.user);
         session.setToken(response.data.token);
         router.push('/');
@@ -22566,10 +22561,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     this.fetchCountries();
@@ -22589,7 +22580,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       disabled: false
     };
   },
-  methods: _defineProperty({
+  methods: {
     getError: function getError(fieldName) {
       var error = this.errors[fieldName] || undefined;
       if (error) {
@@ -22611,25 +22602,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     },
     register: function register() {
       var _this3 = this;
-      axios.post('sanctum/csrf-cookie', {
-        baseURL: '/'
-      }).then(function (response) {
-        _this3.authenticate();
+      axios.post('register', this.user).then(function (response) {
+        _this3.$router.push('/login');
+      })["catch"](function (error) {
+        _this3.errors = error.response.data.errors;
+        _this3.$root.$refs.$notification.show({
+          title: _this3.$i18n.t('saving'),
+          text: _this3.$i18n.t('errorOccur'),
+          variant: 'danger'
+        });
       });
     }
-  }, "register", function register() {
-    var _this4 = this;
-    axios.post('register', this.user).then(function (response) {
-      _this4.$router.push('/login');
-    })["catch"](function (error) {
-      _this4.errors = error.response.data.errors;
-      _this4.$root.$refs.$notification.show({
-        'title': _this4.$i18n.t('saving'),
-        'text': _this4.$i18n.t('errorOccur'),
-        'variant': 'danger'
-      });
-    });
-  })
+  }
 });
 
 /***/ }),
@@ -22997,7 +22981,6 @@ var _hoisted_11 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  var _component_t_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("t-button");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/"
   }, {
@@ -23005,7 +22988,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_3];
     }),
     _: 1 /* STABLE */
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_t_button, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VButton"], {
     to: "/register",
     "class": "uppercase hover:text-green-500"
   }, {
@@ -24462,7 +24445,7 @@ var useSessionStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('sessio
       token: undefined
     };
   },
-  action: {
+  actions: {
     logout: function logout() {
       this.user = undefined;
       this.token = undefined;
@@ -24735,7 +24718,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bgLogin[data-v-39532108] {\n        background-image: url('/images/jumpbox.jpg');\n        background-repeat: none;\n        background-size: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bgLogin[data-v-39532108] {\n  background-image: url('/images/jumpbox.jpg');\n  background-repeat: none;\n  background-size: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

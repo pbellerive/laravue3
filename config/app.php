@@ -178,6 +178,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        \Laravue3\Stateless\StatelessServiceProvider::class,
 
     ],
 

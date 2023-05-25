@@ -19,6 +19,7 @@
     "laravel/framework": "^9.0",
     "laravel/tinker": "^2.5",
     "laravue3/laravel-module-builder": "^0.0.3",
+    "laravue3/stateless": "^1.0",
     "spatie/laravel-permission": "^5.8"
   },
   "require-dev": {

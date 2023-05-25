@@ -4,7 +4,7 @@ export const useSessionStore = defineStore('session', {
     user: undefined,
     token: undefined,
   }),
-  action: {
+  actions: {
     logout: function () {
       this.user = undefined;
       this.token = undefined;

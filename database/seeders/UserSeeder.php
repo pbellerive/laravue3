@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         User::create([
             'first_name' =>  'Patrick',
             'last_name' => 'Bellerive',
-            'email' => 'p.bellerive@gmail.com',
+            'email' => 'user@laravue.test',
             'password' => password_hash('123456', PASSWORD_BCRYPT),
         ]);
 

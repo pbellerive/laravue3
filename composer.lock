@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbdafa542bcd079f259a5f52ecae26b2",
+    "content-hash": "af4d6672ee01d81e4466dbf86a2f6102",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1770,6 +1770,55 @@
                 "source": "https://github.com/pbellerive/laravel-module-builder/tree/0.0.3"
             },
             "time": "2022-08-05T13:37:53+00:00"
+        },
+        {
+            "name": "laravue3/stateless",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pbellerive/stateless_middleware.git",
+                "reference": "bd42966a1e372991bccf12b00f86a573313c97a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pbellerive/stateless_middleware/zipball/bd42966a1e372991bccf12b00f86a573313c97a9",
+                "reference": "bd42966a1e372991bccf12b00f86a573313c97a9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^6.1",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravue3\\Stateless\\StatelessServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravue3\\Stateless\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Bellerive",
+                    "email": "p.bellerive@gmail.com"
+                }
+            ],
+            "description": "Stateless authentication package",
+            "support": {
+                "issues": "https://github.com/pbellerive/stateless_middleware/issues",
+                "source": "https://github.com/pbellerive/stateless_middleware/tree/1.0.12"
+            },
+            "time": "2022-07-18T21:31:11+00:00"
         },
         {
             "name": "league/commonmark",

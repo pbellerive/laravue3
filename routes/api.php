@@ -24,7 +24,7 @@ Route::post('register', '\App\Users\RegisterController@register');
 Route::get('countries', 'App\Settings\SettingController@fetchCountries');
 Route::get('states', 'App\Settings\SettingController@fetchStates');
 
-Route::middleware('auth:sanctum')->group(function ($router) {
+Route::middleware('stateless')->group(function ($router) {
     Route::post('logout', '\App\Users\LoginController@logout');
 
     Route::apiResource('users', \App\Users\UserController::class, ['only' => ['update']]);

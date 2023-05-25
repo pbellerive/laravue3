@@ -8,9 +8,9 @@
       </div>
       <div class="flex flex-row justify-end text-white">
         <div class="flex-initial mr-1">
-          <t-button to="/register" class="uppercase hover:text-green-500">
+          <v-button to="/register" class="uppercase hover:text-green-500">
             {{ $t('register') }}
-          </t-button>
+          </v-button>
         </div>
       </div>
     </div>
@@ -53,19 +53,17 @@ const credentials = ref({
   email: '',
   password: '',
 });
+
 const login = () => {
-  axios.get('sanctum/csrf-cookie', { baseURL: '/' }).then((response) => {
-    this.authenticate();
-  });
+  authenticate();
 };
 
 const authenticate = () => {
   axios
-    .post('login', this.credentials)
+    .post('login', credentials.value)
     .then((response) => {
       session.setUser(response.data.user);
       session.setToken(response.data.token);
-
       router.push('/');
     })
     .catch((error) => {

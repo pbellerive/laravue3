@@ -1121,9 +1121,6 @@ select {
 .grid-flow-row {
   grid-auto-flow: row;
 }
-.grid-flow-col {
-  grid-auto-flow: column;
-}
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1190,11 +1187,11 @@ select {
 .justify-items-center {
   justify-items: center;
 }
-.gap-6 {
-  gap: 1.5rem;
-}
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-6 {
+  gap: 1.5rem;
 }
 .gap-x-8 {
   -moz-column-gap: 2rem;
@@ -1641,9 +1638,6 @@ select {
 }
 .text-center {
   text-align: center;
-}
-.text-right {
-  text-align: right;
 }
 .text-3xl {
   font-size: 1.875rem;
