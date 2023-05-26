@@ -31,12 +31,12 @@
           </router-link>
         </nav>
         <div v-if="show" class="hidden lg:flex lg:flex-1 w-0 justify-end">
-          <t-button to="/profile" classes="ml-8 whitespace-nowrap inline-flex w-0 ">
+          <v-button to="/profile" classes="ml-8 whitespace-nowrap inline-flex w-0 ">
             <i class="fas fa-user-circle text-gray-300 hover:text-white"></i>
-          </t-button>
-          <t-button @click="logout()" classes="ml-8 whitespace-nowrap inline-flex w-0">
+          </v-button>
+          <v-button @click="logout()" classes="ml-8 whitespace-nowrap inline-flex w-0">
             <i class="fas fa-sign-out-alt text-gray-300 hover:text-white"></i>
-          </t-button>
+          </v-button>
         </div>
       </div>
     </div>

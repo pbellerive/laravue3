@@ -4,7 +4,7 @@
       <h1 class="block text-center my-4 text-5xl">{{ $t('manageProfile', { name: user.fullName }) }}</h1>
       <div class="grid grid-cols-none">
         <div class="inline-grid justify-items-end">
-          <t-button @click="save()" variant="primary" class=""> <i class="fas fa-save pr-1"></i>{{ $t('save') }} </t-button>
+          <v-button @click="save()" variant="primary" class=""> <i class="fas fa-save pr-1"></i>{{ $t('save') }} </v-button>
         </div>
       </div>
     </header>
@@ -13,53 +13,41 @@
       <div class="grid grid-cols-2 my-4">
         <div class="mr-1">
           <label for="firstName" class="block mb-2">{{ $t('firstName') }}</label>
-          <t-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" />
+          <v-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" />
         </div>
         <div class="ml-1">
           <label for="lastName" class="block mb-2">{{ $t('lastName') }}</label>
-          <t-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" />
+          <v-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" />
         </div>
       </div>
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="my-6 mr-1">
             <label for="email" class="block mb-2">{{ $t('email') }}</label>
-            <t-input v-model="user.email" id="email" placeholder="john.doe@email.com" />
+            <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" />
           </div>
           <div class="my-6 ml-1">
-            <t-input-group :label="$t('birthDate')">
-              <t-datepicker v-model="user.birth_date"> </t-datepicker>
-            </t-input-group>
+            <v-datepicker v-model="user.birth_date" :label="$t('birthDate')"> </v-datepicker>
           </div>
         </div>
       </div>
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
-            <t-input-group :label="$t('country')">
-              <t-select v-model="user.country_id" :placeholder="$t('selectOption')" :options="countries" variant="default"></t-select>
-            </t-input-group>
+            <v-select v-model="user.country_id" :placeholder="$t('selectOption')" :options="countries" variant="default" :label="$t('country')"></v-select>
           </div>
           <div class="mr-1">
-            <t-input-group :label="$t('address')">
-              <t-input v-model="user.address" maxlength="255" />
-            </t-input-group>
+            <v-input v-model="user.address" maxlength="255" :label="$t('address')" />
           </div>
           <div class="ml-1">
-            <t-input-group :label="$t('city')">
-              <t-input v-model="user.city" maxlength="50" />
-            </t-input-group>
+            <v-input v-model="user.city" maxlength="50" :label="$t('city')" />
           </div>
           <div class="ml-1 grid grid-cols-2">
             <div class="mr-1">
-              <t-input-group :label="$t('state')">
-                <t-select v-model="user.state_id" :placeholder="$t('selectOption')" :options="states" variant="default"></t-select>
-              </t-input-group>
+              <v-select v-model="user.state_id" :placeholder="$t('selectOption')" :options="states" variant="default" :label="$t('state')"></v-select>
             </div>
             <div class="mr-1">
-              <t-input-group :label="$t('postalCode')">
-                <t-input v-model="user.postal_code" maxlength="12" />
-              </t-input-group>
+              <v-input v-model="user.postal_code" maxlength="12" :label="$t('postalCode')" />
             </div>
           </div>
         </div>
@@ -67,28 +55,20 @@
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
-            <t-input-group :label="$t('phone')">
-              <t-input v-model="user.phone_number" maxlength="12" />
-            </t-input-group>
+            <v-input v-model="user.phone_number" maxlength="12" :label="$t('phone')" />
           </div>
           <div class="ml-1">
-            <t-input-group :label="$t('cellPhoneNumber')">
-              <t-input v-model="user.cell_phone_number" maxlength="12" />
-            </t-input-group>
+            <v-input v-model="user.cell_phone_number" maxlength="12" :label="$t('cellPhoneNumber')" />
           </div>
         </div>
       </div>
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
-            <t-input-group :label="$t('password')">
-              <t-input v-model="user.password" type="password" id="password" />
-            </t-input-group>
+            <v-input v-model="user.password" type="password" id="password" :label="$t('password')" />
           </div>
           <div class="ml-1">
-            <t-input-group :label="$t('passwordConfirmation')">
-              <t-input v-model="user.password_confirmation" type="password" id="password-confirmation" />
-            </t-input-group>
+            <v-input v-model="user.password_confirmation" type="password" id="password-confirmation" :label="$t('passwordConfirmation')" />
           </div>
         </div>
       </div>
@@ -96,64 +76,61 @@
   </div>
 </template>
 
-<script>
-import { VInput } from 'laravue-ui-components/src/components';
+<script setup>
+import { VButton, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
 import { fetchCurrentUser } from '../composites/user';
 import { useSessionStore } from '../../store/modules/session';
+import { onMounted, onBeforeMount, ref } from 'vue';
+import { inject } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-export default {
-  components: {
-    'v-input': VInput,
-  },
-  created() {
-    this.fetchCountries();
-    this.fetchStates();
-  },
-  data() {
-    return {
-      countries: [],
-      states: [],
-      user: {},
-    };
-  },
-  methods: {
-    fetchCountries() {
-      axios.get('countries').then((response) => {
-        this.countries = response.data.data;
+const { t } = useI18n({});
+const emitter = inject('emitter');
+
+onBeforeMount(() => {
+  fetchCountries();
+  fetchStates();
+});
+
+onMounted(() => {
+  fetchCurrentUser().then((response) => {
+    const store = userSessionStore();
+    store.setUser(response.data);
+  });
+});
+
+const countries = ref([]);
+const states = ref([]);
+const user = ref({});
+const fetchCountries = function () {
+  axios.get('countries').then((response) => {
+    countries.value = response.data.data;
+  });
+};
+
+const fetchStates = function () {
+  axios.get('states').then((response) => {
+    states = response.data.data;
+  });
+};
+
+const save = function () {
+  axios
+    .patch('users/' + user.id, user)
+    .then((response) => {
+      emitter.emit('show-notification', {
+        title: t('saving'),
+        text: t('successfulSaving'),
+        variant: 'success',
       });
-    },
-    fetchStates() {
-      axios.get('states').then((response) => {
-        this.states = response.data.data;
+      $router.push('/');
+    })
+    .catch((error) => {
+      emitter.emit('show-notification', {
+        title: t('saving'),
+        text: t('errorOccur'),
+        variant: 'danger',
       });
-    },
-    save() {
-      axios
-        .patch('users/' + this.user.id, this.user)
-        .then((response) => {
-          this.$root.$refs.$notification.show({
-            title: this.$i18n.t('saving'),
-            text: this.$i18n.t('successfulSaving'),
-            variant: 'success',
-          });
-          this.$router.push('/');
-        })
-        .catch((error) => {
-          this.$root.$refs.$notification.show({
-            title: this.$i18n.t('saving'),
-            text: this.$i18n.t('errorOccur'),
-            variant: 'danger',
-          });
-        });
-    },
-  },
-  mounted() {
-    fetchCurrentUser().then((response) => {
-      const store = userSessionStore();
-      store.setUser(response.data);
     });
-  },
 };
 </script>
-
-<style lang="scss" scoped></style>

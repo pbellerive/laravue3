@@ -8,14 +8,14 @@
       </div>
       <div class="flex flex-row flex-grow justify-end items-center text-white">
         <div class="flex-initial">
-          <t-button to="/login" class="uppercase hover:text-green-500 text-sm md:text-lg">
+          <v-button to="/login" class="uppercase hover:text-green-500 text-sm md:text-lg">
             {{ $t('login') }}
-          </t-button>
+          </v-button>
         </div>
         <div class="flex-initial">
-          <t-button to="/register" class="uppercase hover:text-green-500 text-sm md:text-lg">
+          <v-button to="/register" class="uppercase hover:text-green-500 text-sm md:text-lg">
             {{ $t('register') }}
-          </t-button>
+          </v-button>
         </div>
       </div>
     </div>

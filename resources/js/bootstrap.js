@@ -48,9 +48,10 @@ axios.interceptors.response.use(
         return element == router.currentRoute.name;
       }) == -1;
 
-    if (error.response.status === 401 && except) {
+    if (error.response.status === 401 && !except) {
       const store = useSessionStore();
       store.logout();
+      debugger;
       router.push('/');
     }
     return Promise.reject(error);
@@ -61,41 +62,6 @@ axios.interceptors.response.use(
 import PageHeader from './components/page-header.vue';
 import VueUi from 'laravue-ui-components/src';
 import VueUiSettings from './vueTailwindBootStrap';
-
-// Vue.mixin({
-//   computed: {
-//     ...mapGetters('session', [
-//       'currentUser', // -> this['some/nested/module/someGetter']
-//     ])
-//   },
-//   data() {
-//     return {
-//       showAlert : false
-//     }
-//   },
-//   methods: {
-//     $notification() {
-//       return this.$root.$refs.$notification;
-//     },
-//     setLocale(locale) {
-//       this.$i18n.locale = locale;
-//     },
-//     toggleAlert() {
-//         this.showAlert = true;
-//     },
-//     fetchCurrentUser() {
-//       if ((this.$router.currentRoute.name != 'register' && this.$router.currentRoute.name != 'login') && localStorage.token) {
-//         return axios.get('user')
-//           .then(response => {
-//             this.$store.commit('session/setUser', response.data);
-//             return response;
-//           })
-//       }
-//     }
-
-//   },
-// });
-
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
