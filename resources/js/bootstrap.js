@@ -1,7 +1,7 @@
 var Vue = require('vue').default;
 import router from './router';
 
-// import Notification from './components/ui/notification';
+import Notification from './components/ui/notification';
 import i18n from './translations/i18n';
 import mitt from 'mitt';
 
@@ -96,20 +96,6 @@ import VueUiSettings from './vueTailwindBootStrap';
 //   },
 // });
 
-// new Vue({
-//   el: '#app',
-//   store,
-//   i18n,
-//   components: {
-//     'page-header': PageHeader,
-//     'notification': Notification
-//   },
-//   router,
-//   created() {
-//     this.fetchCurrentUser();
-//   }
-// })
-
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
@@ -119,7 +105,7 @@ const app = createApp({
   el: '#app',
   components: {
     'page-header': PageHeader,
-    // notification: Notification,
+    notification: Notification,
     // loading: Loading,
   },
 })

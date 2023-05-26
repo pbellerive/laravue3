@@ -40,6 +40,11 @@ import { ref } from 'vue';
 import { useSessionStore } from '../../store/modules/session';
 import { useRouter } from 'vue-router';
 import { VButton, VInput } from 'laravue-ui-components/src/components';
+import { inject } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n({});
+const emitter = inject('emitter');
 
 const session = useSessionStore();
 const router = useRouter();
@@ -62,11 +67,11 @@ const authenticate = () => {
       router.push('/');
     })
     .catch((error) => {
-      // this.$root.$refs.$notification.show({
-      //   title: this.$i18n.t('saving'),
-      //   text: this.$i18n.t('errorOccur'),
-      //   variant: 'danger',
-      // });
+      emitter.emit('show-notification', {
+        title: t('saving'),
+        text: t('errorOccur'),
+        variant: 'danger',
+      });
     });
 };
 </script>
