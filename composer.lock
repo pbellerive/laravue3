@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d07dbed29fff0387e2ab4ddb3939eb35",
+    "content-hash": "465066339a966148f5f9db4fb0e58f5e",
     "packages": [
         {
             "name": "astrotomic/laravel-translatable",
@@ -1532,16 +1532,16 @@
         },
         {
             "name": "laravue3/laravel-module-builder",
-            "version": "0.0.3",
+            "version": "0.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pbellerive/laravel-module-builder.git",
-                "reference": "9d753da83cc726e7a33175623ac29bbd82b5452b"
+                "reference": "01eb88cfe3bcc63e93ade829c2a5989c62bb480d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pbellerive/laravel-module-builder/zipball/9d753da83cc726e7a33175623ac29bbd82b5452b",
-                "reference": "9d753da83cc726e7a33175623ac29bbd82b5452b",
+                "url": "https://api.github.com/repos/pbellerive/laravel-module-builder/zipball/01eb88cfe3bcc63e93ade829c2a5989c62bb480d",
+                "reference": "01eb88cfe3bcc63e93ade829c2a5989c62bb480d",
                 "shasum": ""
             },
             "require-dev": {
@@ -1575,9 +1575,9 @@
             "description": "Create module in laravel",
             "support": {
                 "issues": "https://github.com/pbellerive/laravel-module-builder/issues",
-                "source": "https://github.com/pbellerive/laravel-module-builder/tree/0.0.3"
+                "source": "https://github.com/pbellerive/laravel-module-builder/tree/0.0.7"
             },
-            "time": "2022-08-05T13:37:53+00:00"
+            "time": "2023-01-29T20:30:28+00:00"
         },
         {
             "name": "laravue3/stateless",
