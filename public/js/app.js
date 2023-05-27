@@ -22241,23 +22241,6 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = '/api';
 axios.defaults.withCredentials = true;
 
-// axios.interceptors.request.use(function (config) {
-//   let token = '';
-//   if (localStorage.token) {
-//     // let tokenObject = JSON.parse();
-//     token = localStorage.token ? localStorage.token : undefined;
-//   }
-//   config.headers.Authorization = 'Bearer ' + token;
-
-//   //set xsrf token a revoir avec laravel pour ne pas avoir de session.
-//   // config.headers['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content')
-//   return config;
-// }, function (error) {
-//   // Do something with request error
-//   return Promise.reject(error);
-// });
-
-
 var exceptRoutesName = ['login', 'register', 'home', 'root'];
 axios.interceptors.response.use(function (response) {
   return response;
