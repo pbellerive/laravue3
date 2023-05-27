@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::post('login', '\App\Users\LoginController@authenticate');
+Route::post('login', '\Laravue3\Stateless\Controllers\LoginController@authenticate');
+
 Route::post('register', '\App\Users\RegisterController@register');
 Route::get('countries', 'App\Settings\SettingController@fetchCountries');
 Route::get('states', 'App\Settings\SettingController@fetchStates');
 
 Route::middleware('stateless')->group(function ($router) {
+    Route::get('check-auth', '\Laravue3\Stateless\Controllers\LoginController@checkLogin');
+
     Route::post('logout', '\App\Users\LoginController@logout');
 
-    Route::apiResource('users', \App\Users\UserController::class, ['only' => ['update']]);
+    Route::apiResource('users', \App\Users\UserController::class, ['only' => ['show', 'update']]);
     Route::get('user', '\App\Users\UserController@getCurrentUser');
 });

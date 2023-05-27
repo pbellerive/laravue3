@@ -19,7 +19,7 @@ export const useSessionStore = defineStore('session', {
   },
   getters: {
     isAuthenticated: function () {
-      return this.user && this.token;
+      return this.user;
     },
     currentUser: function () {
       return this.user;

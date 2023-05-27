@@ -3,7 +3,7 @@
     <div class="grid p-3">
       <div class="flex flex-row justify-end text-white">
         <div class="flex-initial mr-1">
-          <v-button to="/register" class="uppercase hover:text-green-500">
+          <v-button to="/register" variant="link">
             {{ $t('register') }}
           </v-button>
         </div>
@@ -19,15 +19,15 @@
       <div class="w-full">
         <v-input @keypress.enter="login()" v-model="credentials.password" type="password" :placeholder="$t('password')" class="w-full" />
       </div>
-      <div class="flex w-full">
-        <div class="w-full text-left">
-          <v-button variant="link" to="/forgot-password">
-            <span>{{ $t('forgotPassword') }} </span>
-          </v-button>
-        </div>
-        <div>
+      <div class="flex flex-col w-full">
+        <div class="w-full">
           <v-button @click="login()" variant="primary" class="w-full">
             {{ $t('login') }}
+          </v-button>
+        </div>
+        <div class="w-full text-right">
+          <v-button variant="link" to="/forgot-password">
+            <span>{{ $t('forgotPassword') }} </span>
           </v-button>
         </div>
       </div>

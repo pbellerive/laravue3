@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import { useSessionStore } from './store/modules/session';
 
 import Dashboard from './components/dashboard/dashboard';
 import Home from './components/home';
@@ -14,16 +15,48 @@ var router = new createRouter({
   history: createWebHistory(),
   routes: [
     // { path: '/', component: Home, name: 'root' },
-    { path: '/home', component: Home, name: 'home' },
+    { path: '/home', component: Home, name: 'Home' },
     { path: '/', component: Dashboard },
-    { path: '/login', component: Login, name: 'login' },
-    { path: '/register', component: Register, name: 'register' },
-    { path: '/forgot-password', component: ForgotPassword, name: 'forgot-password' },
-    { path: '/reset-password', component: ResetPassword, name: 'reset-password' },
+    { path: '/login', component: Login, name: 'Login' },
+    { path: '/register', component: Register, name: 'Register' },
+    { path: '/forgot-password', component: ForgotPassword, name: 'Forgot-password' },
+    { path: '/reset-password', component: ResetPassword, name: 'Reset-password' },
     { path: '/profile', component: ProfileEdit },
 
     { path: '/:pathMatch(.*)*', component: Error404 },
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const session = useSessionStore();
+
+  if (!session.isAuthenticated) {
+    if (to.name === 'Login') {
+      next();
+    }
+    let response;
+    try {
+      response = await axios.get('check-auth');
+      session.$patch({
+        isAuthenticated: true,
+        user: response.data,
+      });
+    } catch (error) {
+      response = error;
+    }
+
+    if (response.status === 200) {
+      if (to.name === 'Login') {
+        next({ name: 'Home', replace: true });
+      } else {
+        next();
+      }
+    } else {
+      next({ name: 'Login' });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

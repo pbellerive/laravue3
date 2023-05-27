@@ -30,11 +30,11 @@
             {{ $tc('item3', 2) }}
           </router-link>
         </nav>
-        <div v-if="show" class="hidden lg:flex lg:flex-1 w-0 justify-end">
-          <v-button to="/profile" classes="ml-8 whitespace-nowrap inline-flex w-0 ">
+        <div v-if="show" class="hidden lg:flex lg:flex-1 justify-end gap-3">
+          <v-button to="/profile" variant="link">
             <i class="fas fa-user-circle text-gray-300 hover:text-white"></i>
           </v-button>
-          <v-button @click="logout()" classes="ml-8 whitespace-nowrap inline-flex w-0">
+          <v-button @click="logout()" variant="link">
             <i class="fas fa-sign-out-alt text-gray-300 hover:text-white"></i>
           </v-button>
         </div>
@@ -75,28 +75,28 @@
           </div>
           <div class="mt-6">
             <nav class="grid gap-y-8">
-              <router-link to="/a" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+              <v-button to="/a" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
                 {{ $tc('a', 2) }}
-              </router-link>
-              <router-link to="/b" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+              </v-button>
+              <v-button to="/b" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
                 {{ $tc('b', 2) }}
-              </router-link>
-              <router-link to="/c" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
+              </v-button>
+              <v-button to="/c" @click.native="closeMenu()" class="text-base font-medium text-gray-500 hover:text-gray-900">
                 {{ $tc('c', 2) }}
-              </router-link>
+              </v-button>
             </nav>
           </div>
         </div>
         <div class="py-6 px-5 space-y-6">
           <div class="grid grid-cols-2 gap-y-4 gap-x-8"></div>
           <div>
-            <router-link to="/register" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-500 bg-green-600 hover:bg-green-700">
+            <v-button to="/register" variant="link">
               {{ $t('register') }}
-            </router-link>
+            </v-button>
             <p class="mt-6 text-center text-base font-medium text-gray-500">
-              <router-link to="/login" @click.native="closeMenu()" class="text-green-800 hover:text-indigo-500">
+              <v-button to="/login" @click.native="closeMenu()" variant="primary">
                 {{ $t('login') }}
-              </router-link>
+              </v-button>
             </p>
           </div>
         </div>
@@ -110,13 +110,14 @@ import Login from './authentification/login';
 import { computed, ref } from 'vue';
 import { useSessionStore } from '../store/modules/session';
 import { useRouter } from 'vue-router';
+import { VButton } from 'laravue-ui-components/src/components';
 
 const router = useRouter();
 const session = useSessionStore();
 const showMobileMenu = ref(false);
 
 const show = computed(() => {
-  return session.isAuthenticated && router && router.currentRoute && router.currentRoute.name != 'register' && router.currentRoute.name != 'login';
+  return session.isAuthenticated && router.currentRoute.value.name != 'register' && router.currentRoute.value.name != 'login';
 });
 
 const openMenu = function () {

@@ -19,6 +19,11 @@ class UserController extends Controller
         return \Auth::user();
     }
 
+    public function show(User $user)
+    {
+        return $user;
+    }
+
     public function update(Request $request, User $user)
     {
         $this->authorize($user);
