@@ -10,6 +10,7 @@ import ForgotPassword from './components/authentification/forgot-password';
 import ResetPassword from './components/authentification/reset-password';
 import Error404 from './components/error/404';
 import ProfileEdit from './components/user/edit';
+const UserList = () => import('./components/user/list');
 
 var router = new createRouter({
   history: createWebHistory(),
@@ -22,6 +23,7 @@ var router = new createRouter({
     { path: '/forgot-password', component: ForgotPassword, name: 'Forgot-password' },
     { path: '/reset-password', component: ResetPassword, name: 'Reset-password' },
     { path: '/profile', component: ProfileEdit },
+    { path: '/users', component: UserList },
 
     { path: '/:pathMatch(.*)*', component: Error404 },
   ],

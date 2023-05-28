@@ -1,14 +1,14 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
   <div class="relative bg-black text-white">
-    <div class="mx-auto px-4 sm:px-6">
+    <div class="mx-auto">
       <div class="flex justify-between items-center border-b-2 border-gray-100 py-2 lg:justify-start lg:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <span class="sr-only">laravue</span>
-          <router-link to="/">
+          <!-- <router-link to="/">
             <img src="/images/site-icon.jpg" class="hidden sm:inline w-10 sm:w-10" />
             <img src="/images/site-icon.jpg" class="sm:hidden w-20" width="32px" />
-          </router-link>
+          </router-link> -->
         </div>
         <div v-if="show" class="-mr-2 -my-2 lg:hidden">
           <button @click="openMenu()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -20,8 +20,8 @@
           </button>
         </div>
         <nav v-if="show" class="hidden lg:flex space-x-10 text-xl lg:text-2xl font-medium">
-          <router-link to="/item1" class="text-gray-300 hover:text-white">
-            {{ $tc('items 1', 2) }}
+          <router-link to="/users" class="text-gray-300 hover:text-white">
+            {{ $t('users') }}
           </router-link>
           <router-link to="/item2" class="text-gray-300 hover:text-white">
             {{ $tc('item 2', 2) }}

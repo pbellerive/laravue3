@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function index(Request $request)
+    {
+        return User::paginate();
+    }
+
     /**
      * Handle an authentication attempt.
      *

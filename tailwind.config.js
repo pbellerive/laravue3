@@ -11,7 +11,7 @@ module.exports = {
     './resources/**/js/bootstrap.js',
     'resources/**/js/vueTailwindBootStrap.js',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {},
   },

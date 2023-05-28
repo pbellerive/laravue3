@@ -30,6 +30,6 @@ Route::middleware('stateless')->group(function ($router) {
 
     Route::post('logout', '\App\Users\LoginController@logout');
 
-    Route::apiResource('users', \App\Users\UserController::class, ['only' => ['show', 'update']]);
+    Route::apiResource('users', \App\Users\UserController::class, ['only' => ['index', 'show', 'update']]);
     Route::get('user', '\App\Users\UserController@getCurrentUser');
 });

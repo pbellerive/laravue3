@@ -2,8 +2,15 @@ var Vue = require('vue').default;
 import router from './router';
 
 import Notification from './components/ui/notification';
+import SideMenu from './components/ui/side-menu';
+import PageHeader from './components/page-header.vue';
+
 import i18n from './translations/i18n';
 import mitt from 'mitt';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import iconLoader from './font-awesome';
+
+iconLoader();
 
 window._ = require('lodash');
 
@@ -42,7 +49,6 @@ axios.interceptors.response.use(
 );
 //global components
 
-import PageHeader from './components/page-header.vue';
 import VueUi from 'laravue-ui-components/src';
 import VueUiSettings from './vueTailwindBootStrap';
 import { createApp } from 'vue';
@@ -52,11 +58,6 @@ const pinia = createPinia();
 
 const app = createApp({
   el: '#app',
-  components: {
-    'page-header': PageHeader,
-    notification: Notification,
-    // loading: Loading,
-  },
 })
   .use(router)
   .use(i18n)
@@ -67,6 +68,10 @@ const app = createApp({
 const emitter = mitt();
 app.provide('emitter', emitter);
 
+app.component('notification', Notification);
+app.component('page-header', PageHeader);
+app.component('side-menu', SideMenu);
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
 
 /**
