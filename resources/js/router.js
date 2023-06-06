@@ -37,15 +37,12 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
     let response;
-    try {
-      response = await axios.get('check-auth');
-      session.$patch({
-        isAuthenticated: true,
-        user: response.data,
-      });
-    } catch (error) {
-      response = error;
-    }
+    //BAD pas censé d'avoir le try
+    response = await axios.get('check-auth');
+    session.$patch({
+      isAuthenticated: true,
+      user: response.data,
+    });
 
     if (response.status === 200) {
       if (to.name === 'Login') {
@@ -54,6 +51,7 @@ router.beforeEach(async (to, from, next) => {
         next();
       }
     } else {
+      console.log(response.status);
       next({ name: 'Login' });
     }
   } else {

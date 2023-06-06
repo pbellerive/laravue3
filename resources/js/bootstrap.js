@@ -42,7 +42,7 @@ axios.interceptors.response.use(
     if (error.response.status === 401 && !except) {
       const store = useSessionStore();
       store.logout();
-      router.push('/');
+      return error.response;
     }
     return Promise.reject(error);
   }
