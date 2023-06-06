@@ -11,7 +11,6 @@ class UserControllerTest extends TestCase
     public function testUpdateMyUserProfile()
     {
         $user = \App\Users\User::first();
-
         $params = [
             'first_name' => 'New first name',
             'last_name' => 'New last name',
