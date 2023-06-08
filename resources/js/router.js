@@ -36,22 +36,20 @@ router.beforeEach(async (to, from, next) => {
     if (to.name === 'Login') {
       next();
     }
-    let response;
-    //BAD pas censé d'avoir le try
-    response = await axios.get('check-auth');
-    session.$patch({
-      isAuthenticated: true,
-      user: response.data,
-    });
+    let response = await axios.get('check-auth');
 
     if (response.status === 200) {
+      session.$patch({
+        isAuthenticated: true,
+        user: response.data,
+      });
+
       if (to.name === 'Login') {
         next({ name: 'Home', replace: true });
       } else {
         next();
       }
     } else {
-      console.log(response.status);
       next({ name: 'Login' });
     }
   } else {

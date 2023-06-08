@@ -28,7 +28,7 @@ Route::get('states', 'App\Settings\SettingController@fetchStates');
 Route::middleware('stateless')->group(function ($router) {
     Route::get('check-auth', '\Laravue3\Stateless\Controllers\LoginController@checkLogin');
 
-    Route::post('logout', '\App\Users\LoginController@logout');
+    Route::post('logout', '\Laravue3\Stateless\Controllers\LoginController@logout');
 
     Route::apiResource('users', \App\Users\UserController::class, ['only' => ['index', 'show', 'update']]);
     Route::get('user', '\App\Users\UserController@getCurrentUser');

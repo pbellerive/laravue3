@@ -21646,7 +21646,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_modules_session__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/modules/session */ "./resources/js/store/modules/session.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm-bundler.js");
-function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
 
 
 
@@ -21667,7 +21666,7 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       (0,_composites_user__WEBPACK_IMPORTED_MODULE_1__.fetchCurrentUser)().then(function (response) {
-        var store = userSessionStore();
+        var store = (0,_store_modules_session__WEBPACK_IMPORTED_MODULE_2__.useSessionStore)();
         store.setUser(response.data);
       });
     });
@@ -21681,7 +21680,7 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
     };
     var fetchStates = function fetchStates() {
       axios.get('states').then(function (response) {
-        response.data.data, _readOnlyError("states");
+        states.value = response.data.data;
       });
     };
     var save = function save() {
@@ -22567,23 +22566,6 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   key: 0
 };
-var _hoisted_12 = {
-  key: 0,
-  "class": "mt-10"
-};
-var _hoisted_13 = {
-  key: 0,
-  "class": "text-gray-500 mb-5"
-};
-var _hoisted_14 = {
-  "class": "flex flex-col divide-y divide-gray-500"
-};
-var _hoisted_15 = {
-  key: 0
-};
-var _hoisted_16 = {
-  key: 0
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_font_awesome_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("font-awesome-icon");
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -22603,7 +22585,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.toggleShowLabel();
     })
-  })], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <section class=\"mt-10\">\n            <div v-if=\"store.currentProject\">\n                <h1 class=\"text-gray-500 pl-2 md:pl-5 mb-5\">\n                    {{$t('project')}}\n                </h1>\n                <ul class=\"flex flex-col pl-2 md:pl-5 divide-y divide-gray-500\">\n                    <li class=\"text-white p-2 md:p-3 cursor-pointer\">\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-layer-group\" />{{$t('dashboard')}}\n                    </li>\n                    <li class=\"text-gray-500 p-2 md:p-3 cursor-pointer\" @click=\"store.currentTabName='backlog'\" >\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-box\" /> {{$t('backlog')}}\n                    </li>\n                    <li class=\"text-gray-500 p-2 md:p-3 cursor-pointer\">\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-table-columns\" />{{$t('kanban')}}\n                    </li>\n                    <li class=\"text-gray-500 p-2 md:p-3 cursor-pointer\">\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-rectangle-list\" /> {{$t('list')}}\n                    </li>\n                    <li class=\"text-gray-500 p-2 md:p-3 cursor-pointer\">\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-calendar-day\" />{{$t('calendar')}}\n                    </li>\n                    <li class=\"text-gray-500 p-2 md:p-3 cursor-pointer\">\n                        <font-awesome-icon class=\"mr-3\" icon=\"fa-solid fa-gear\" />{{$t('projectSettings')}}\n                    </li>\n                </ul>\n            </div>\n            <div v-else class=\"text-center\">\n                {{$t('noSelectedProject')}}\n            </div>\n        </section> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [$setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('general')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  })], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [$setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('general')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
       'text-white': $setup.textColor('MyTasks'),
       'text-center': !$setup.showLabel
@@ -22615,7 +22597,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
         "class": "mr-1",
         icon: "fa-solid fa-box"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('myTasks')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('A')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1 /* STABLE */
   })], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
@@ -22630,7 +22612,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
         "class": "mr-1",
         icon: "fa-solid fa-layer-group"
-      }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('projectList')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('B')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1 /* STABLE */
   })], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
@@ -22641,7 +22623,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
     "class": "mr-1",
     icon: "fa-solid fa-chart-simple"
-  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('reports')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('C')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
       'text-white': $setup.textColor('preferences'),
       'text-center': !$setup.showLabel
@@ -22649,23 +22631,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
     "class": "mr-1",
     icon: "fa-solid fa-gear"
-  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('preferences')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)])]), $setup.store.currentOrganisation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_12, [$setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('organisation')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
-      'text-white': $setup.textColor('organisation'),
-      'text-center': !$setup.showLabel
-    }])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
-    "class": "mr-1",
-    icon: "fa-solid fa-building"
-  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('organisation')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
-      'text-white': $setup.textColor('members'),
-      'text-center': !$setup.showLabel
-    }])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
-    "class": "mr-1",
-    icon: "fa-solid fa-user-group"
-  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('members')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"text-gray-500 py-2 md:py-3\" :class=\"{ 'text-white': textColor('Inbox'), 'text-center': !showLabel }\">\n          <font-awesome-icon class=\"mr-1\" icon=\"fa-solid fa-envelope\" /><span v-if=\"showLabel\">{{ $t('inbox') }}</span>\n        </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"text-gray-500 py-2 md:py-3\" :class=\"{ 'text-white': textColor('realissation'), 'text-center': !showLabel }\">\n          <font-awesome-icon class=\"mr-1\" icon=\"fa-solid fa-table-columns\" /><span v-if=\"showLabel\">{{ $t('realisations') }}</span>\n        </li> ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('settings')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)])])], 2 /* CLASS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -22783,7 +22749,6 @@ var _hoisted_32 = {
   "class": "ml-1"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_v_datepicker = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("v-datepicker");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('manageProfile', {
     name: $setup.user.fullName
   })), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VButton"], {
@@ -22821,7 +22786,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "email",
     placeholder: "john.doe@email.com"
-  }, null, 8 /* PROPS */, ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_v_datepicker, {
+  }, null, 8 /* PROPS */, ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VDatePicker"], {
     modelValue: $setup.user.birth_date,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.user.birth_date = $event;
@@ -22961,12 +22926,11 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   var except = exceptRoutesName.findIndex(function (element) {
-    return element == _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name;
+    return element == _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.value.name;
   }) == -1;
-  if (error.response.status === 401 && !except) {
+  if (error.response.status === 401 && except) {
     var store = (0,_store_modules_session__WEBPACK_IMPORTED_MODULE_8__.useSessionStore)();
     store.logout();
-    return error.response;
   }
   return Promise.reject(error);
 });
@@ -23021,8 +22985,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   fetchCurrentUser: () => (/* binding */ fetchCurrentUser)
 /* harmony export */ });
-var fetchCurrentUser = function fetchCurrentUser(router) {
-  if (router.currentRoute.name != 'register' && router.currentRoute.name != 'login') {
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../router */ "./resources/js/router.js");
+
+var fetchCurrentUser = function fetchCurrentUser() {
+  if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name != 'register' && _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name != 'login') {
     return axios.get('user').then(function (response) {
       // this.$store.commit('session/setUser', response.data);
       return response;
@@ -23144,7 +23110,7 @@ router.beforeEach( /*#__PURE__*/function () {
         case 0:
           session = (0,_store_modules_session__WEBPACK_IMPORTED_MODULE_1__.useSessionStore)();
           if (session.isAuthenticated) {
-            _context.next = 10;
+            _context.next = 9;
             break;
           }
           if (to.name === 'Login') {
@@ -23154,11 +23120,11 @@ router.beforeEach( /*#__PURE__*/function () {
           return axios.get('check-auth');
         case 5:
           response = _context.sent;
-          session.$patch({
-            isAuthenticated: true,
-            user: response.data
-          });
           if (response.status === 200) {
+            session.$patch({
+              isAuthenticated: true,
+              user: response.data
+            });
             if (to.name === 'Login') {
               next({
                 name: 'Home',
@@ -23168,16 +23134,15 @@ router.beforeEach( /*#__PURE__*/function () {
               next();
             }
           } else {
-            console.log(response.status);
             next({
               name: 'Login'
             });
           }
-          _context.next = 11;
+          _context.next = 10;
           break;
-        case 10:
+        case 9:
           next();
-        case 11:
+        case 10:
         case "end":
           return _context.stop();
       }
@@ -23285,7 +23250,9 @@ var en = {
   en: 'English',
   preferredLocale: 'Preferred Language',
   resetPassword: 'Reset my password',
-  newPassword: 'New Password'
+  newPassword: 'New Password',
+  //
+  settings: 'Settings'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (en);
 
@@ -23341,7 +23308,9 @@ var fr = {
   preferredLocale: 'Langue de préférence',
   resetPassword: 'Modifier mon mot de passe',
   sendPasswordResetLink: 'Demander un nouveau',
-  newPassword: 'Nouveau mot de passe'
+  newPassword: 'Nouveau mot de passe',
+  //
+  settings: 'Configuration'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fr);
 

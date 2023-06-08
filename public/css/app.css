@@ -871,9 +871,6 @@ select {
 .mr-2 {
   margin-right: 0.5rem;
 }
-.mr-3 {
-  margin-right: 0.75rem;
-}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1630,9 +1627,6 @@ select {
 .pb-6 {
   padding-bottom: 1.5rem;
 }
-.pl-2 {
-  padding-left: 0.5rem;
-}
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -2070,25 +2064,13 @@ select {
     margin-left: 5rem;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:max-w-2xl {
     max-width: 42rem;
-  }
-
-  .md\:p-3 {
-    padding: 0.75rem;
   }
 
   .md\:py-3 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-  }
-
-  .md\:pl-5 {
-    padding-left: 1.25rem;
   }
 
   .md\:text-lg {

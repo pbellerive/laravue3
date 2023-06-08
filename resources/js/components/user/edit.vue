@@ -27,7 +27,7 @@
             <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" />
           </div>
           <div class="my-6 ml-1">
-            <v-datepicker v-model="user.birth_date" :label="$t('birthDate')"> </v-datepicker>
+            <v-date-picker v-model="user.birth_date" :label="$t('birthDate')"> </v-date-picker>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   fetchCurrentUser().then((response) => {
-    const store = userSessionStore();
+    const store = useSessionStore();
     store.setUser(response.data);
   });
 });
@@ -102,6 +102,7 @@ onMounted(() => {
 const countries = ref([]);
 const states = ref([]);
 const user = ref({});
+
 const fetchCountries = function () {
   axios.get('countries').then((response) => {
     countries.value = response.data.data;
@@ -110,7 +111,7 @@ const fetchCountries = function () {
 
 const fetchStates = function () {
   axios.get('states').then((response) => {
-    states = response.data.data;
+    states.value = response.data.data;
   });
 };
 

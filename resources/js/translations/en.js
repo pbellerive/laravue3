@@ -37,6 +37,9 @@ const en = {
   preferredLocale: 'Preferred Language',
   resetPassword: 'Reset my password',
   newPassword: 'New Password',
+
+  //
+  settings: 'Settings',
 };
 
 export default en;

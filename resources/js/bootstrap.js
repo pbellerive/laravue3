@@ -36,13 +36,12 @@ axios.interceptors.response.use(
   function (error) {
     let except =
       exceptRoutesName.findIndex((element) => {
-        return element == router.currentRoute.name;
+        return element == router.currentRoute.value.name;
       }) == -1;
 
-    if (error.response.status === 401 && !except) {
+    if (error.response.status === 401 && except) {
       const store = useSessionStore();
       store.logout();
-      return error.response;
     }
     return Promise.reject(error);
   }

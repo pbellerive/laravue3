@@ -38,6 +38,9 @@ const fr = {
   resetPassword: 'Modifier mon mot de passe',
   sendPasswordResetLink: 'Demander un nouveau',
   newPassword: 'Nouveau mot de passe',
+
+  //
+  settings: 'Configuration',
 };
 
 export default fr;
