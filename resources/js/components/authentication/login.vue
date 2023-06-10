@@ -1,7 +1,7 @@
 <template>
   <div class="bgLogin">
     <div class="grid p-3">
-      <div class="flex flex-row justify-end text-white">
+      <div class="flex flex-row justify-end text-black">
         <div class="flex-initial mr-1">
           <v-button to="/register" variant="link">
             {{ $t('register') }}
@@ -10,14 +10,14 @@
       </div>
     </div>
     <div class="container max-w-sm mx-auto grid grid-flow-row gap-2 justify-items-center">
-      <h1 class="uppercase font-bold text-5xl my-5 text-white">
+      <h1 class="uppercase font-bold text-5xl my-5 text-black">
         {{ $t('login') }}
       </h1>
       <div class="mb-2 w-full">
-        <v-input @keypress.enter="login()" v-model="credentials.email" type="text" :placeholder="$t('email')" class="w-full" />
+        <v-input variant="default" @keypress.enter="login()" v-model="credentials.email" :label="$t('email')" class="w-full" />
       </div>
       <div class="w-full">
-        <v-input @keypress.enter="login()" v-model="credentials.password" type="password" :placeholder="$t('password')" class="w-full" />
+        <v-input variant="default" @keypress.enter="login()" v-model="credentials.password" type="password" :label="$t('password')" class="w-full" />
       </div>
       <div class="flex flex-col w-full">
         <div class="w-full">

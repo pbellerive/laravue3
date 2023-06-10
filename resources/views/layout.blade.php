@@ -11,10 +11,10 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     </head>
-    <body class="bg-black text-white min-h-screen">
-        <div id="app" class="bg-black w-full min-h-screen h-full flex">
+    <body class="text-black min-h-screen">
+        <div id="app" class="w-full min-h-screen h-full flex">
             <side-menu></side-menu>
-            <div class="bg-black w-full h-full">
+            <div class="w-full h-full">
                 <page-header v-if="$router.currentRoute.name != 'home' && $router.currentRoute.name != 'login'"></page-header>
                 <router-view class="h-full"></router-view>
                 <footer>

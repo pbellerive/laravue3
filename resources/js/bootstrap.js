@@ -28,7 +28,7 @@ axios.defaults.withCredentials = true;
 
 import { useSessionStore } from './store/modules/session';
 
-let exceptRoutesName = ['login', 'register', 'home', 'root'];
+let exceptRoutesName = ['Login', 'Register', 'root', 'Forgot-password'];
 axios.interceptors.response.use(
   function (response) {
     return response;
@@ -42,6 +42,7 @@ axios.interceptors.response.use(
     if (error.response.status === 401 && except) {
       const store = useSessionStore();
       store.logout();
+      router.push('/login');
     }
     return Promise.reject(error);
   }

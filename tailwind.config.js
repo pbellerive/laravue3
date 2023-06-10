@@ -1,16 +1,5 @@
 module.exports = {
-  content: [
-    './tailwind.config.js',
-    './resources/**/*.blade.php',
-    './resources/**/js/components/authentification/*.vue',
-    './resources/**/js/components/dashboard/*.vue',
-    './resources/**/js/components/error/*.vue',
-    './resources/**/js/components/ui/*.vue',
-    './resources/**/js/components/user/*.vue',
-    './resources/**/js/components/*.vue',
-    './resources/**/js/bootstrap.js',
-    'resources/**/js/vueTailwindBootStrap.js',
-  ],
+  content: ['./tailwind.config.js', './resources/**/*.blade.php', './resources/**/js/**/*.vue', './resources/**/js/bootstrap.js', 'resources/**/js/vueTailwindBootStrap.js', './node_modules/laravue-ui-components/**/*.vue'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {},
@@ -18,5 +7,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  // plugins: [require('@tailwindcss/forms')],
 };

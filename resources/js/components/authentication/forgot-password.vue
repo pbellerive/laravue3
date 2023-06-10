@@ -1,9 +1,9 @@
 <template>
-  <div class="bgLogin bg-repeat-y">
+  <div>
     <div class="flex flex-row bg-transparent">
       <div class="flex-initial pt-0 sm:pt-5">
         <router-link to="/">
-          <img src="/images/logo_here.png" class="ml-10 md:ml-20 w-24 sm:w-60" />
+          <img src="/images/site-icon.jpg" class="ml-10 md:ml-20 w-8" />
         </router-link>
       </div>
       <div class="flex flex-row flex-grow justify-end items-center text-white">
@@ -24,7 +24,7 @@
         {{ $t('forgotPassword') }}
       </h1>
       <div>
-        <v-input v-model="email" id="email" placeholder="john.doe@email.com" :label="$t('email')" />
+        <v-input v-model="email" id="email" :label="$t('email')" />
       </div>
       <div>
         <v-button @click="send" variant="primary" class="w-full mt-2">

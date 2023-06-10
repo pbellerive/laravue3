@@ -6,27 +6,27 @@
       </h1>
     </div>
     <div v-else>
-      <div class="container max-w-sm px-1 md:max-w-2xl mx-auto justify-items-center">
-        <h1 class="uppercase font-bold text-5xl pt-5 text-white text-center">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="uppercase font-bold text-5xl pt-5 text-black text-center">
           {{ $t('register') }}
         </h1>
         <!-- ******************************************** -->
-        <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-green-500">
-          <div class="grid grid-cols-2 my-4">
-            <div class="mr-1">
-              <v-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" :label="$t('firstName')" />
+        <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-gray-300">
+          <div class="grid grid-cols-2 my-4 gap-3">
+            <div>
+              <v-input variant="default" v-model="user.first_name" id="firstName" maxlength="255" :label="$t('firstName')" />
             </div>
-            <div class="ml-1">
-              <v-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" :label="$t('lastName')" />
+            <div>
+              <v-input variant="default" v-model="user.last_name" id="lastName" maxlength="255" :label="$t('lastName')" />
             </div>
           </div>
           <div class="my-4 pt-6">
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 gap-3">
               <div class="my-6 mr-1">
-                <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" :label="$t('email')" />
+                <v-input variant="default" v-model="user.email" id="email" :label="$t('email')" />
               </div>
               <div class="my-6 ml-1">
-                <t-datepicker v-model="user.birth_date" :label="$t('birthDate')"> </t-datepicker>
+                <v-date-picker v-model="user.birth_date" :label="$t('birthDate')"> </v-date-picker>
               </div>
 
               <div>
@@ -50,7 +50,7 @@
                 <v-select v-model="user.country_id" :placeholder="$t('selectOption')" :options="countries" variant="default" :label="$t('country')"></v-select>
               </div>
               <div class="mr-1">
-                <v-input v-model="user.address" maxlength="255" :label="$t('address')" />
+                <v-input variant="default" v-model="user.address" maxlength="255" :label="$t('address')" />
               </div>
               <div class="ml-1">
                 <v-input v-model="user.city" maxlength="50" :label="$t('city')" />
@@ -60,7 +60,7 @@
                   <v-select v-model="user.state_id" :placeholder="$t('selectOption')" :options="states" variant="default" :label="$t('state')"></v-select>
                 </div>
                 <div class="mr-1">
-                  <v-input v-model="user.postal_code" maxlength="12" :label="$t('postalCode')" />
+                  <v-input variant="default" v-model="user.postal_code" maxlength="12" :label="$t('postalCode')" />
                 </div>
               </div>
             </div>
@@ -78,10 +78,10 @@
           <div class="my-4 pt-6">
             <div class="grid grid-row-2 sm:grid-cols-2">
               <div class="mr-1">
-                <v-input v-model="user.password" type="password" id="password" :label="$t('password')" />
+                <v-input variant="default" v-model="user.password" type="password" id="password" :label="$t('password')" />
               </div>
               <div class="ml-1">
-                <v-input v-model="user.password_confirmation" type="password" id="password-confirmation" :label="$t('passwordConfirmation')" />
+                <v-input variant="default" v-model="user.password_confirmation" type="password" id="password-confirmation" :label="$t('passwordConfirmation')" />
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
 
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import { VButton, VInput, VSelect } from 'laravue-ui-components/src/components';
+import { VButton, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n({});

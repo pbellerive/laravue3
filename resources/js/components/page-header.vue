@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="relative bg-black text-white">
+  <div v-if="show" class="relative">
     <div class="mx-auto">
       <div class="flex justify-between items-center border-b-2 border-gray-100 py-2 lg:justify-start lg:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import Login from './authentification/login';
+import Login from './authentication/login';
 import { computed, ref } from 'vue';
 import { useSessionStore } from '../store/modules/session';
 import { useRouter } from 'vue-router';
