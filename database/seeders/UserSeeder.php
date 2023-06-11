@@ -23,17 +23,7 @@ class UserSeeder extends Seeder
             'password' => password_hash('123456', PASSWORD_BCRYPT),
         ]);
 
-        User::create([
-            'first_name' =>  $faker->name,
-            'last_name' =>  $faker->lastName(),
-            'email' => $faker->email,
-            'password' => password_hash('123456', PASSWORD_BCRYPT),
-        ]);
-
-        User::create([
-            'first_name' =>  $faker->firstName(),
-            'last_name' =>  $faker->lastName(),
-            'email' => $faker->email,
+        User::factory()->count(5)->create([
             'password' => password_hash('123456', PASSWORD_BCRYPT),
         ]);
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto flex flex-col">
-    <header class="text-center text-3xl">Bonjour</header>
+    <header class="text-center text-3xl" data-testId="header.dashboard">Bonjour</header>
     <div class="flex flex-row text-gray-500 text-center">
       <div class="bg-white border rounded-md border-gray-200 w-1/4">stats</div>
 

@@ -14,14 +14,14 @@
         {{ $t('login') }}
       </h1>
       <div class="mb-2 w-full">
-        <v-input variant="default" @keypress.enter="login()" v-model="credentials.email" :label="$t('email')" class="w-full" />
+        <v-input variant="default" @keypress.enter="login()" v-model="credentials.email" :label="$t('email')" class="w-full" dataTestId="input.email" />
       </div>
       <div class="w-full">
-        <v-input variant="default" @keypress.enter="login()" v-model="credentials.password" type="password" :label="$t('password')" class="w-full" />
+        <v-input variant="default" @keypress.enter="login()" v-model="credentials.password" type="password" :label="$t('password')" class="w-full" dataTestId="input.password" />
       </div>
       <div class="flex flex-col w-full">
         <div class="w-full">
-          <v-button @click="login()" variant="primary" class="w-full">
+          <v-button @click="login()" variant="primary" class="w-full" data-testid="button.login">
             {{ $t('login') }}
           </v-button>
         </div>

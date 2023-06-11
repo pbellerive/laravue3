@@ -21905,7 +21905,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.credentials.email = $event;
     }),
     label: _ctx.$t('email'),
-    "class": "w-full"
+    "class": "w-full",
+    dataTestId: "input.email"
   }, null, 8 /* PROPS */, ["modelValue", "label"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VInput"], {
     variant: "default",
     onKeypress: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
@@ -21917,13 +21918,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     type: "password",
     label: _ctx.$t('password'),
-    "class": "w-full"
+    "class": "w-full",
+    dataTestId: "input.password"
   }, null, 8 /* PROPS */, ["modelValue", "label"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VButton"], {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $setup.login();
     }),
     variant: "primary",
-    "class": "w-full"
+    "class": "w-full",
+    "data-testid": "button.login"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('login')), 1 /* TEXT */)];
@@ -22314,7 +22317,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "container mx-auto flex flex-col"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<header class=\"text-center text-3xl\">Bonjour</header><div class=\"flex flex-row text-gray-500 text-center\"><div class=\"bg-white border rounded-md border-gray-200 w-1/4\">stats</div><div class=\"container bg-white border rounded-md border-gray-200 flex-1 mx-2 h-36 w-1/2\">MAIN</div><div class=\"bg-white border rounded-md border-gray-200 hidden sm:inline w-1/4\">news</div></div>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<header class=\"text-center text-3xl\" data-testId=\"header.dashboard\">Bonjour</header><div class=\"flex flex-row text-gray-500 text-center\"><div class=\"bg-white border rounded-md border-gray-200 w-1/4\">stats</div><div class=\"container bg-white border rounded-md border-gray-200 flex-1 mx-2 h-36 w-1/2\">MAIN</div><div class=\"bg-white border rounded-md border-gray-200 hidden sm:inline w-1/4\">news</div></div>", 2);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.first_name), 1 /* TEXT */)]);
 }
@@ -27450,6 +27453,10 @@ const Base = (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
     variant: {
       type: String,
       default: 'default',
+    },
+    dataTestId: {
+      type: String,
+      default: undefined,
     },
     disabled: {
       type: Boolean,
@@ -57658,7 +57665,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-const _hoisted_1 = ["type", "value", "required", "placeholder", "disabled"]
+const _hoisted_1 = ["type", "value", "required", "placeholder", "disabled", "data-testId"]
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -57673,7 +57680,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onInput: _cache[0] || (_cache[0] = (...args) => ($options.onInput && $options.onInput(...args))),
       disabled: _ctx.disabled,
       onFocus: _cache[1] || (_cache[1] = $event => ($data.isFocus = true)),
-      onFocusout: _cache[2] || (_cache[2] = $event => ($data.isFocus = false))
+      onFocusout: _cache[2] || (_cache[2] = $event => ($data.isFocus = false)),
+      "data-testId": _ctx.dataTestId
     }, null, 42 /* CLASS, PROPS, HYDRATE_EVENTS */, _hoisted_1),
     ($props.label)
       ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", {
