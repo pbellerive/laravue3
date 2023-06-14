@@ -1,0 +1,61 @@
+[
+  {
+    "name": "role",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "length": 15
+      }
+    ]
+  },
+  {
+    "name": "permission",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "length": 15
+      }
+    ]
+  },
+  {
+    "name": "permission_role",
+    "fields": [
+      {
+        "name": "role_id",
+        "type": "unsignedBigInteger"
+      },
+      {
+        "name": "permission_id",
+        "type": "unsignedBigInteger"
+      }
+    ]
+  },
+  {
+    "name": "role_user",
+    "fields": [
+      {
+        "name": "role_id",
+        "type": "unsignedBigInteger"
+      },
+      {
+        "name": "user_id",
+        "type": "unsignedBigInteger"
+      }
+    ]
+  },
+  {
+    "name": "permission_user",
+    "fields": [
+      {
+        "name": "permission_id",
+        "type": "unsignedBigInteger"
+      },
+      {
+        "name": "user_id",
+        "type": "unsignedBigInteger"
+      }
+    ]
+  }
+]

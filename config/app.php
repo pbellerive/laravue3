@@ -176,9 +176,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         \Laravue3\Stateless\StatelessServiceProvider::class,
+        \App\Roles\RoleServiceProvider::class,
+        \App\Permissions\PermissionServiceProvider::class
 
     ],
 

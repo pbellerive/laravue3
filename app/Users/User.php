@@ -6,14 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Laravue3\Stateless\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
-    use HasRoles;
     use Notifiable;
 
     public $appends = ['fullName'];
@@ -60,4 +58,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('\App\Roles\Role');
+    }
+
+    public function assignRole($role)
+    {
+        $this->roles()->attach($role->id);
+    }
+
 }
