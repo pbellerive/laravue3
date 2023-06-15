@@ -20,4 +20,29 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
     }
 
+    public function test_user_has_role()
+    {
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+
+        $user->assignRole($role);
+
+        print('*********************');
+        print($role->name);
+        $this->assertTrue($user->hasRole($role->name));
+    }
+
+    public function test_user_has_not_role()
+    {
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+        $role2 = Role::factory()->create();
+
+        $user->assignRole($role);
+
+        print('*********************');
+        print($role->name);
+        $this->assertTrue(!$user->hasRole($role2->name));
+    }
+
 }
