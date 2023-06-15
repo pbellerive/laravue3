@@ -22587,21 +22587,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.toggleShowLabel();
     })
   })], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [$setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('general')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
-      'text-white': $setup.textColor('MyTasks'),
-      'text-center': !$setup.showLabel
-    }])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/tasks/my"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
-        "class": "mr-1",
-        icon: "fa-solid fa-box"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('A')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
-    }),
-    _: 1 /* STABLE */
-  })], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["py-2 md:py-3", {
       'text-white': $setup.textColor('ProjectList'),
       'text-center': !$setup.showLabel
@@ -22613,7 +22598,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
         "class": "mr-1",
         icon: "fa-solid fa-layer-group"
-      }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('B')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('B')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1 /* STABLE */
   })], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
@@ -22624,7 +22609,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
     "class": "mr-1",
     icon: "fa-solid fa-chart-simple"
-  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('C')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  }), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('C')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
+      'text-white': $setup.textColor('users'),
+      'text-center': !$setup.showLabel
+    }])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/users"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
+        icon: ['fas', 'people-group']
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), $setup.showLabel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('A')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1 /* STABLE */
+  })], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-gray-500 py-2 md:py-3", {
       'text-white': $setup.textColor('preferences'),
       'text-center': !$setup.showLabel
@@ -23020,7 +23019,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
   // /* add icons to the library */
-  _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.library.add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileWord, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileExcel, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFilePowerpoint, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileCircleQuestion, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFilePdf, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faAdd, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBars, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBox, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faPencil, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBug, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTableColumns, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faRectangleList, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faCalendarDay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faLayerGroup, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faEnvelope, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faRightFromBracket, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faClockRotateLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBold, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faItalic, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faMessage, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFile, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTrash);
+  _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.library.add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileWord, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileExcel, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFilePowerpoint, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFileCircleQuestion, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFilePdf, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faAdd, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBars, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBox, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faPencil, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBug, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTableColumns, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faRectangleList, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faCalendarDay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faLayerGroup, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faEnvelope, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faRightFromBracket, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faClockRotateLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBold, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faItalic, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faMessage, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faFile, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTrash, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faPeopleGroup);
   _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.library.add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faMagnifyingGlass, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faUnderline, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faRedo, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faUndo, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faCode, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faQuoteLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faListOl, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faList, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faParagraph, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faStrikethrough, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBell, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faChartSimple, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faGear, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faListCheck, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faUserGroup, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faBuilding, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faStar, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faClock, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTag, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faPepperHot);
 });
 

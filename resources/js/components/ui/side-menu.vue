@@ -13,11 +13,6 @@
         {{ $t('general') }}
       </h1>
       <ul class="flex flex-col divide-y divide-gray-500">
-        <li class="text-gray-500 py-2 md:py-3" :class="{ 'text-white': textColor('MyTasks'), 'text-center': !showLabel }">
-          <router-link to="/tasks/my">
-            <font-awesome-icon class="mr-1" icon="fa-solid fa-box" /> <span v-if="showLabel">{{ $t('A') }}</span>
-          </router-link>
-        </li>
         <li class="py-2 md:py-3" :class="{ 'text-white': textColor('ProjectList'), 'text-center': !showLabel }">
           <router-link to="/projects">
             <font-awesome-icon class="mr-1" icon="fa-solid fa-layer-group" /><span v-if="showLabel">{{ $t('B') }}</span>
@@ -27,6 +22,11 @@
           <font-awesome-icon class="mr-1" icon="fa-solid fa-chart-simple" /><span v-if="showLabel">{{ $t('C') }}</span>
         </li>
 
+        <li class="text-gray-500 py-2 md:py-3" :class="{ 'text-white': textColor('users'), 'text-center': !showLabel }">
+          <router-link to="/users">
+            <font-awesome-icon :icon="['fas', 'people-group']" /> <span v-if="showLabel">{{ $t('A') }}</span>
+          </router-link>
+        </li>
         <li class="text-gray-500 py-2 md:py-3" :class="{ 'text-white': textColor('preferences'), 'text-center': !showLabel }">
           <font-awesome-icon class="mr-1" icon="fa-solid fa-gear" /><span v-if="showLabel">{{ $t('settings') }}</span>
         </li>

@@ -2,6 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 /* import specific icons */
 import {
+  faPeopleGroup,
   faParagraph,
   faList,
   faUnderline,
@@ -71,7 +72,8 @@ export default () => {
     faItalic,
     faMessage,
     faFile,
-    faTrash
+    faTrash,
+    faPeopleGroup
   );
   library.add(faMagnifyingGlass, faUnderline, faRedo, faUndo, faCode, faQuoteLeft, faListOl, faList, faParagraph, faStrikethrough, faBell, faChartSimple, faGear, faListCheck, faUserGroup, faUser, faBuilding, faStar, faClock, faTag, faPepperHot);
 };

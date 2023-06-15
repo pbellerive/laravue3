@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Users\User;
 use App\Roles\Role;
+use App\Permissions\Permission;
 
 class UserTest extends TestCase
 {
@@ -27,8 +28,6 @@ class UserTest extends TestCase
 
         $user->assignRole($role);
 
-        print('*********************');
-        print($role->name);
         $this->assertTrue($user->hasRole($role->name));
     }
 
@@ -40,9 +39,54 @@ class UserTest extends TestCase
 
         $user->assignRole($role);
 
-        print('*********************');
-        print($role->name);
         $this->assertTrue(!$user->hasRole($role2->name));
     }
+
+    public function test_user_has_permission_through_role()
+    {
+
+        $user = User::factory()->create();
+        $role = Role::factory()->has(Permission::factory())->create();
+        $permission = $role->permissions->first();
+
+        $user->assignRole($role);
+
+        $this->assertTrue($user->hasPermission($permission->name));
+    }
+
+    public function test_user_assign_permission()
+    {
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+        $permission = Permission::factory()->create();
+
+        $user->assignPermission($permission);
+
+        $this->assertDatabaseHas('permission_user', ['permission_id' => $permission->id, 'user_id' => $user->id]);
+    }
+
+    public function test_user_has_permission()
+    {
+        $user = User::factory()->create();
+        $permission = Permission::factory()->create();
+
+        $user->assignPermission($permission);
+
+
+        $this->assertTrue($user->hasPermission($permission->name));
+    }
+
+    public function test_user_remove_permission()
+    {
+        $user = User::factory()->create();
+        $permission = Permission::factory()->create();
+
+        $user->assignPermission($permission);
+        $user->removePermission($permission);
+
+
+        $this->assertDatabaseMissing('permission_user', ['permission_id' => $permission->id, 'user_id' => $user->id]);
+    }
+
 
 }
