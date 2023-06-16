@@ -16,12 +16,14 @@ class UserSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        User::create([
-            'first_name' =>  'Patrick',
-            'last_name' => 'Bellerive',
+        $admin = User::create([
+            'first_name' =>  'superadmin',
+            'last_name' => 'superadmin',
             'email' => 'user@laravue.test',
             'password' => password_hash('123456', PASSWORD_BCRYPT),
         ]);
+
+        $admin->assignRole(\App\Roles\Role::where('name', '=', 'superadmin')->first());
 
         User::factory()->count(5)->create([
             'password' => password_hash('123456', PASSWORD_BCRYPT),

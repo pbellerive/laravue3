@@ -9,7 +9,7 @@
       </div>
     </header>
 
-    <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-green-500">
+    <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-slate-700">
       <div class="grid grid-cols-2 my-4">
         <div class="mr-1">
           <label for="firstName" class="block mb-2">{{ $t('firstName') }}</label>
@@ -26,12 +26,12 @@
             <label for="email" class="block mb-2">{{ $t('email') }}</label>
             <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" />
           </div>
-          <div class="my-6 ml-1">
+          <!-- <div class="my-6 ml-1">
             <v-date-picker v-model="user.birth_date" :label="$t('birthDate')"> </v-date-picker>
-          </div>
+          </div> -->
         </div>
       </div>
-      <div class="my-4 pt-6">
+      <!-- <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
             <v-select v-model="user.country_id" :placeholder="$t('selectOption')" :options="countries" variant="default" :label="$t('country')"></v-select>
@@ -51,8 +51,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="my-4 pt-6">
+      </div> -->
+      <!-- <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
             <v-input v-model="user.phone_number" maxlength="12" :label="$t('phone')" />
@@ -61,7 +61,7 @@
             <v-input v-model="user.cell_phone_number" maxlength="12" :label="$t('cellPhoneNumber')" />
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
@@ -80,51 +80,58 @@
 import { VButton, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
 import { fetchCurrentUser } from '../composites/user';
 import { useSessionStore } from '../../store/modules/session';
-import { onMounted, onBeforeMount, ref } from 'vue';
+import { onMounted, onBeforeMount, ref, defineProps } from 'vue';
 import { inject } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 const { t } = useI18n({});
 const emitter = inject('emitter');
+const router = useRouter();
+
+const props = defineProps({
+  id: {
+    type: [String, Number],
+    default: undefined,
+  },
+});
 
 onBeforeMount(() => {
-  fetchCountries();
-  fetchStates();
+  // fetchCountries();
+  // fetchStates();
 });
 
 onMounted(() => {
-  fetchCurrentUser().then((response) => {
-    const store = useSessionStore();
-    store.setUser(response.data);
-  });
+  if (props.id) {
+    axios
+      .get('users/' + props.id)
+      .then((response) => {
+        user.value = response.data.data;
+      })
+      .catch((error) => {
+        emitter.emit('show-notification', {
+          title: '',
+          text: t('errorOccur'),
+          variant: 'danger',
+        });
+      });
+  }
 });
 
 const countries = ref([]);
 const states = ref([]);
 const user = ref({});
 
-const fetchCountries = function () {
-  axios.get('countries').then((response) => {
-    countries.value = response.data.data;
-  });
-};
-
-const fetchStates = function () {
-  axios.get('states').then((response) => {
-    states.value = response.data.data;
-  });
-};
-
 const save = function () {
   axios
-    .patch('users/' + user.id, user)
+    .patch('users/' + props.id, user.value)
     .then((response) => {
       emitter.emit('show-notification', {
         title: t('saving'),
         text: t('successfulSaving'),
         variant: 'success',
       });
-      $router.push('/');
+      router.push('/');
     })
     .catch((error) => {
       emitter.emit('show-notification', {

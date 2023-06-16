@@ -9,7 +9,7 @@ import Register from './components/authentication/register';
 import ForgotPassword from './components/authentication/forgot-password';
 import ResetPassword from './components/authentication/reset-password';
 import Error404 from './components/error/404';
-import ProfileEdit from './components/user/edit';
+const ProfileEdit = () => import('./components/user/edit');
 const UserList = () => import('./components/user/list');
 
 var router = new createRouter({
@@ -24,6 +24,7 @@ var router = new createRouter({
     { path: '/reset-password', component: ResetPassword, name: 'Reset-password', meta: { requiresAuth: false } },
     { path: '/profile', component: ProfileEdit, meta: { requiresAuth: true } },
     { path: '/users', component: UserList, meta: { requiresAuth: true } },
+    { path: '/users/:id', component: ProfileEdit, meta: { requiresAuth: true }, props: true },
 
     { path: '/:pathMatch(.*)*', component: Error404 },
   ],

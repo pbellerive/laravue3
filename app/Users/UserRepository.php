@@ -17,10 +17,10 @@ class UserRepository
                    'first_name' => 'required | sometimes',
                    'last_name' => 'required | sometimes',
                    'email' => [
-                        'sometimes',
+                     'sometimes',
                        'required',
                        'email:rfc',
-                        \Illuminate\Validation\Rule::unique('users')->ignore(\Auth::id()),
+                        \Illuminate\Validation\Rule::unique('users')->ignore($user->id),
                         'max:512'
                    ],
                    'password' => 'sometimes | required | confirmed'

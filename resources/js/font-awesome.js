@@ -46,11 +46,13 @@ import {
   faFileWord,
   faFileExcel,
   faFilePowerpoint,
+  faEye,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default () => {
   // /* add icons to the library */
   library.add(
+    faEye,
     faFileWord,
     faFileExcel,
     faFilePowerpoint,

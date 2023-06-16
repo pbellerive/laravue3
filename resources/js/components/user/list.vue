@@ -6,10 +6,16 @@
         <div>{{ $t('lastName') }}</div>
         <div>{{ $t('action') }}</div>
       </div>
-      <div v-for="user in users" :key="user.id" class="grid grid-cols-3 divide-x-2 hover:bg-gray-200 hover:text-black hover:cursor-pointer">
-        <div class="px-3">{{ user.first_name }}</div>
-        <div class="px-3">{{ user.last_name }}</div>
-        <div class="px-3">-</div>
+      <div class="grid grid-flow-row gap-3">
+        <div v-for="user in users" :key="user.id" class="grid grid-cols-3 divide-x-2 hover:bg-gray-200 hover:text-black hover:cursor-pointer text-center">
+          <div class="px-3">{{ user.first_name }}</div>
+          <div class="px-3">{{ user.last_name }}</div>
+          <div class="px-3 py-2">
+            <v-button :to="'users/' + user.id">
+              <font-awesome-icon class="mr-1" icon="fas fa-eye" />
+            </v-button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -17,6 +23,8 @@
 
 <script setup>
 import { inject, onBeforeMount, ref } from 'vue';
+import { VButton } from 'laravue-ui-components/src/components';
+
 const emitter = inject('emitter');
 
 const users = ref([]);

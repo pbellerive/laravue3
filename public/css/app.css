@@ -1112,6 +1112,9 @@ video {
 .grid-flow-row {
   grid-auto-flow: row;
 }
+.grid-flow-col {
+  grid-auto-flow: column;
+}
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1275,6 +1278,10 @@ video {
 .divide-green-500 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-divide-opacity));
+}
+.divide-slate-700 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(51 65 85 / var(--tw-divide-opacity));
 }
 .place-self-start {
   place-self: start;

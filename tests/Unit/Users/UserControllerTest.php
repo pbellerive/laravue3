@@ -6,11 +6,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+use App\Users\User;
+use App\Roles\Role;
+
 class UserControllerTest extends TestCase
 {
     public function testUpdateMyUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
         $params = [
             'first_name' => 'New first name',
             'last_name' => 'New last name',
@@ -25,7 +28,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateNotMyUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
         $user2 = \App\Users\User::offset(1)->first();
 
         $params = [
@@ -40,7 +43,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateIllFormedEmailUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
 
         $params = [
             'email' => 't@',
@@ -54,7 +57,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateEmptyEmailUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
 
         $params = [
             'email' => '',
@@ -68,7 +71,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithDuplicateEmailFromOtherUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
         $user2 = \App\Users\User::offset(1)->first();
 
         $params = [
@@ -83,7 +86,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithMyEmailOtherUserProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
 
         $params = [
             'email' => $user->email,
@@ -97,7 +100,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdatePasswordProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
 
         $params = [
             'password' => 'newPassword',
@@ -113,7 +116,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWrongPasswordConfirmationProfile()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
 
         $params = [
             'password' => 'newPassword',
@@ -128,7 +131,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithoutPassword_shouldNotChange()
     {
-        $user = \App\Users\User::first();
+        $user = \App\Users\User::factory()->create();
         $currentHash = $user->password;
 
         $params = [
@@ -144,20 +147,26 @@ class UserControllerTest extends TestCase
         $this->assertTrue($user->password == $currentHash);
     }
 
-    public function testUpdateBirthDate()
+    public function test_get_view_user_as_superAdmin()
     {
-        $user = \App\Users\User::first();
+        $user = User::factory()->create();
+        $superadmin = User::factory()->create();
+        $superadmin->assignRole(Role::where('name', '=', 'superadmin')->first());
 
-        $params = [
-            'birth_date' => '1978-02-02',
-        ];
-
-        $response = $this->actingAs($user)->json('patch', '/api/users/' . $user->id, $params);
-
-        $params['id'] = $user->id;
+        $response = $this->actingAs($superadmin)->json('get', '/api/users/' . $user->id);
 
         $response->assertOk();
-        $this->assertDatabaseHas('users', $params);
+        $this->assertTrue($user->id == $response->getData()->data->id);
+    }
+
+    public function test_get_view_user_as_user()
+    {
+        $user = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $response = $this->actingAs($user)->json('get', '/api/users/' . $user->id);
+
+        $response->assertForbidden();
     }
 
 }
