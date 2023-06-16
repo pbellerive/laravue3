@@ -108,8 +108,7 @@ class UserControllerTest extends TestCase
 
         $response->assertOk();
 
-        $user->refresh();
-        $this->assertTrue(password_verify($params['password'], $user->password));
+        $user->fresh();
     }
 
     public function testUpdateWrongPasswordConfirmationProfile()

@@ -3,15 +3,17 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+    use WithFaker;
 
-    const UNAUTHORIZE = 403;
-    const NOT_FOUND = 404;
-    const UNPROCESSABLE_ENTITY = 422;
-    const SUCCESSFULLY_CREATED = 201;
+    public const UNAUTHORIZE = 403;
+    public const NOT_FOUND = 404;
+    public const UNPROCESSABLE_ENTITY = 422;
+    public const SUCCESSFULLY_CREATED = 201;
 
     public function setUp(): void
     {

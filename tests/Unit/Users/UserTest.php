@@ -46,8 +46,10 @@ class UserTest extends TestCase
     {
 
         $user = User::factory()->create();
-        $role = Role::factory()->has(Permission::factory())->create();
-        $permission = $role->permissions->first();
+        $role = Role::factory()->create();
+        $permission = Permission::factory()->create();
+
+        $role->assignPermission($permission);
 
         $user->assignRole($role);
 

@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index(Request $request)
     {
         return User::paginate();
@@ -34,26 +41,6 @@ class UserController extends Controller
         $this->authorize($user);
         $params = $request->all();
 
-        \Validator::make($request->all(), [
-            'email' => [
-                'sometimes',
-                'email:rfc',
-                'required',
-                \Illuminate\Validation\Rule::unique('users')->ignore($user->id),
-                'max:512'
-            ],
-            'birth_date' => 'date_format:Y-m-d|before:today',
-            'password' => [
-                'sometimes',
-                'confirmed'
-            ]
-        ])->validate();
-
-        if (isset($params['password'])) {
-            $user->password = password_hash($params['password'], PASSWORD_DEFAULT);
-        }
-
-        $user->fill($params);
-        $user->save();
+        $this->userRepository->update($user, $params);
     }
 }

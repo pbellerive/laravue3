@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Users\User' => 'App\Policies\UserPolicy',
+        'App\Users\User' => 'App\Users\UserPolicy',
     ];
 
     /**
@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)->view('auth.verification-email',[
+            return (new MailMessage())->view('auth.verification-email', [
                 'url' => $url
             ])
             ->subject(\Lang::get('Verify Email Address'));

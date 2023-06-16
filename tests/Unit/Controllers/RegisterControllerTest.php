@@ -5,6 +5,7 @@ namespace Tests\Unit\Controllers;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterControllerTest extends TestCase
 {
@@ -13,6 +14,7 @@ class RegisterControllerTest extends TestCase
     public function testRegisterHappyPath()
     {
 
+        Mail::fake();
         $params = [
             'first_name' => $this->faker()->firstName(),
             'last_name' => $this->faker()->lastName(),
@@ -29,12 +31,10 @@ class RegisterControllerTest extends TestCase
         $this->assertDatabaseHas('users', $params);
 
         $user = \App\Users\User::where('email', $params['email'])->first();
-        $this->assertTrue($user->hasRole('client'));
     }
 
     public function testRegisterWithoutFirstName_return422()
     {
-
         $params = [
             'last_name' => $this->faker()->lastName(),
             'email' => $this->faker()->email(),

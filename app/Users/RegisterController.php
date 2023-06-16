@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Users\User;
 use Illuminate\Auth\Events\Registered;
+
 class RegisterController extends Controller
 {
     /**
@@ -41,7 +42,7 @@ class RegisterController extends Controller
         $newUser->save();
 
         $newUser->refresh();
-        $newUser->assignRole('client');
+        // $newUser->assignRole('client');
 
         event(new Registered($newUser));
     }

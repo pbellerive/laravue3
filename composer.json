@@ -17,7 +17,7 @@
     "laravel-lang/lang": "~8.0",
     "laravel/framework": "^10.0",
     "laravel/tinker": "^2.5",
-    "laravue3/laravel-module-builder": "^0.0.7",
+    "laravue3/laravel-module-builder": "^0.0.8",
     "laravue3/stateless": "^1.0"
   },
   "require-dev": {
