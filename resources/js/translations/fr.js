@@ -41,6 +41,8 @@ const fr = {
 
   //
   settings: 'Configuration',
+  roles: 'Roles',
+  permissions: 'Permissions',
 };
 
 export default fr;

@@ -21,6 +21,18 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
     }
 
+    public function test_user_assign_user_string_role()
+    {
+        $user = User::factory()->create();
+        $role = 'user';
+
+        $user->assignRole($role);
+
+        $roleModel = Role::where('name', '=', 'user')->first();
+
+        $this->assertDatabaseHas('role_user', ['role_id' => $roleModel->id, 'user_id' => $user->id]);
+    }
+
     public function test_user_has_role()
     {
         $user = User::factory()->create();

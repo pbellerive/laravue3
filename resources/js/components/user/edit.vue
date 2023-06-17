@@ -31,6 +31,26 @@
           </div> -->
         </div>
       </div>
+      <section>
+        <div>
+          <h1 class="uppercase font-bold">{{ $t('roles') }}</h1>
+        </div>
+        <div>
+          <div v-for="role in user.roles" :key="role.id">
+            {{ role.name }}
+          </div>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h1 class="uppercase font-bold">{{ $t('permissions') }}</h1>
+        </div>
+        <div>
+          <div v-for="permission in user.permissions" :key="permission.id">
+            {{ role.name }}
+          </div>
+        </div>
+      </section>
       <!-- <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">

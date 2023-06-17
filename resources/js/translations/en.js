@@ -40,6 +40,8 @@ const en = {
 
   //
   settings: 'Settings',
+  roles: 'Roles',
+  permissions: 'Permissions',
 };
 
 export default en;

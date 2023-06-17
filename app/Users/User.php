@@ -61,7 +61,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function assignRole($role)
     {
-        $this->roles()->attach($role->id);
+        $model = $role;
+
+        if (gettype($role) === 'string') {
+            $model = \App\Roles\Role::where('name', '=', $role)->first();
+        }
+
+        $this->roles()->attach($model->id);
     }
 
     public function getFullNameAttribute()

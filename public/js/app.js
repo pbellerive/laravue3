@@ -22919,7 +22919,9 @@ var en = {
   resetPassword: 'Reset my password',
   newPassword: 'New Password',
   //
-  settings: 'Settings'
+  settings: 'Settings',
+  roles: 'Roles',
+  permissions: 'Permissions'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (en);
 
@@ -22977,7 +22979,9 @@ var fr = {
   sendPasswordResetLink: 'Demander un nouveau',
   newPassword: 'Nouveau mot de passe',
   //
-  settings: 'Configuration'
+  settings: 'Configuration',
+  roles: 'Roles',
+  permissions: 'Permissions'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fr);
 
