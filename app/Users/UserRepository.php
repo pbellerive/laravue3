@@ -33,7 +33,17 @@ class UserRepository
 
         $user->fill($params);
         $user->save();
+
+        if (isset($params['permissions'])) {
+            $this->updatePermissions($user, $params['permissions']);
+        }
     }
+
+    public function updatePermissions($user, $permissionIds)
+    {
+        $user->permissions()->sync($permissionIds);
+    }
+
 
 
 }

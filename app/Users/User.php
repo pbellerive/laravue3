@@ -56,7 +56,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function assignPermission($permission)
     {
-        $this->permissions()->attach($permission->id);
+        $model = $permission;
+
+        if (gettype($permission) === 'string') {
+            $model = \App\Permissions\Permission::where('name', '=', $permission)->first();
+        }
+
+        $this->permissions()->attach($model->id);
     }
 
     public function assignRole($role)
@@ -79,8 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $hasPermissionFromRole = $this->roles()->join('permission_role', 'permission_role.role_id', '=', 'roles.id')->join('permissions', 'permission_id', '=', 'permissions.id')->where('permissions.name', '=', $permission)->exists();
 
-        $hasPermission = $this->permissions()->where('permission_user.name', '=', $permission);
-
+        $hasPermission = $this->permissions()->wherePivot('permissions.name', '=', $permission)->exists();
         return $hasPermission || $hasPermissionFromRole;
     }
 

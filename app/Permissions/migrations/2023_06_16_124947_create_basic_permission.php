@@ -21,6 +21,14 @@ return new class () extends Migration {
         ]);
 
         Permission::create([
+            'name' => 'can_update_users',
+        ]);
+
+        Permission::create([
+            'name' => 'can_update_permissions_users',
+        ]);
+
+        Permission::create([
             'name' => 'can_delete_users',
         ]);
 

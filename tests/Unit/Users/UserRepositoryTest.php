@@ -100,4 +100,18 @@ class UserRepositoryTest extends TestCase
 
         $this->userRepository->update($user, $params);
     }
+
+    public function test_update_user_permissions()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('superadmin');
+
+        $userToUpdate = User::factory()->create();
+
+        $permission = Permission::factory()->create();
+
+        $this->userRepository->updatePermissions($userToUpdate, [$permission->id]);
+
+        $this->assertDatabaseHas('permission_user', ['user_id' => $userToUpdate->id, 'permission_id' => $permission->id]);
+    }
 }

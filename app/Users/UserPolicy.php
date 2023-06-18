@@ -52,7 +52,12 @@ class UserPolicy extends \App\Policies\BasePolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->id == $model->id;
+        return $user->id == $model->id || $user->hasPermission('can_update_users');
+    }
+
+    public function updatePermissions(User $user, User $model)
+    {
+        return $user->id != $model->id && $user->hasPermission('can_update_permissions_users');
     }
 
     /**

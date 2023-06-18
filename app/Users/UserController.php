@@ -40,8 +40,13 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $this->authorize($user);
+        $this->authorize('update', $user);
+
         $params = $request->all();
+
+        if (array_key_exists('permissions', $params)) {
+            $this->authorize('updatePermissions', $user);
+        }
 
         $this->userRepository->update($user, $params);
     }

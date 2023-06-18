@@ -2,18 +2,28 @@
 
 namespace Tests\Unit\Users;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Users\User;
 use App\Roles\Role;
+use App\Permissions\Permission;
+use App\Users\UserRepository;
+use Mockery;
+use Mockery\MockInterface;
 
 class UserControllerTest extends TestCase
 {
+    protected $userRepository;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->userRepository = new UserRepository();
+    }
+
     public function testUpdateMyUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
         $params = [
             'first_name' => 'New first name',
             'last_name' => 'New last name',
@@ -28,8 +38,8 @@ class UserControllerTest extends TestCase
 
     public function testUpdateNotMyUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
-        $user2 = \App\Users\User::offset(1)->first();
+        $user = User::factory()->create();
+        $user2 = User::offset(1)->first();
 
         $params = [
             'first_name' => 'New first name not working',
@@ -43,7 +53,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateIllFormedEmailUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'email' => 't@',
@@ -57,7 +67,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateEmptyEmailUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'email' => '',
@@ -71,8 +81,8 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithDuplicateEmailFromOtherUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
-        $user2 = \App\Users\User::offset(1)->first();
+        $user = User::factory()->create();
+        $user2 = User::offset(1)->first();
 
         $params = [
             'email' => $user2->email,
@@ -86,7 +96,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithMyEmailOtherUserProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'email' => $user->email,
@@ -100,7 +110,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdatePasswordProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'password' => 'newPassword',
@@ -116,7 +126,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWrongPasswordConfirmationProfile()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'password' => 'newPassword',
@@ -131,7 +141,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdateWithoutPassword_shouldNotChange()
     {
-        $user = \App\Users\User::factory()->create();
+        $user = User::factory()->create();
         $currentHash = $user->password;
 
         $params = [
@@ -169,4 +179,66 @@ class UserControllerTest extends TestCase
         $response->assertForbidden();
     }
 
+    public function test_update_user_permissions_as_user_without_permission()
+    {
+        $user = User::factory()->create();
+
+        $userToUpdate = User::factory()->create();
+
+        $permission = Permission::factory()->create();
+
+        $response = $this->actingAs($user)->json('patch', '/api/users/' . $userToUpdate->id, [ 'permissions' => $permission->id]);
+
+        $response->assertForbidden();
+    }
+
+    public function test_update_user_permissions_as_user_as_superadmin()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('superadmin');
+
+        $userToUpdate = User::factory()->create();
+
+        $permission = Permission::factory()->create();
+
+        $mock = $this->mock(UserRepository::class, function (MockInterface $mock) {
+            $mock->shouldReceive('update')->once();
+        });
+
+        $response = $this->actingAs($user)->json('patch', '/api/users/' . $userToUpdate->id, [ 'permissions' => $permission->id]);
+
+        $response->assertOk();
+    }
+
+    public function test_update_user_permissions_as_user_having_permission()
+    {
+        $user = User::factory()->create();
+        $user->assignPermission('can_update_users');
+        $user->assignPermission('can_update_permissions_users');
+
+        $userToUpdate = User::factory()->create();
+
+        $permission = Permission::factory()->create();
+
+        $mock = $this->mock(UserRepository::class, function (MockInterface $mock) {
+            $mock->shouldReceive('update')->once();
+        });
+
+        $response = $this->actingAs($user)->json('patch', '/api/users/' . $userToUpdate->id, [ 'permissions' => $permission->id]);
+
+        $response->assertOk();
+    }
+
+    public function test_update_myself_permissions_as_user_having_permission()
+    {
+        $user = User::factory()->create();
+        $user->assignPermission('can_update_users');
+        $user->assignPermission('can_update_permissions_users');
+
+        $permission = Permission::factory()->create();
+
+        $response = $this->actingAs($user)->json('patch', '/api/users/' . $user->id, [ 'permissions' => $permission->id]);
+
+        $response->assertForbidden();
+    }
 }
