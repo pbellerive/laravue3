@@ -30,6 +30,7 @@ Route::middleware('stateless')->group(function ($router) {
 
     Route::post('logout', '\Laravue3\Stateless\Controllers\LoginController@logout');
 
+    Route::apiResource('permissions', \App\Permissions\PermissionController::class, ['only' => ['index']]);
     Route::apiResource('users', \App\Users\UserController::class, ['only' => ['index', 'show', 'update']]);
     Route::get('user', '\App\Users\UserController@getCurrentUser');
 });

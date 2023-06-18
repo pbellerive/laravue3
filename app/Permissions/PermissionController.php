@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    protected $permissionRepository;
+
+    public function __construct(PermissionRepository $permissionRepository)
+    {
+        $this->permissionRepository = $permissionRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-         return new PermissionResourceCollection($this->PermissionRepository->get());
+        return new PermissionResourceCollection($this->permissionRepository->get());
     }
 
     /**
@@ -28,7 +35,7 @@ class PermissionController extends Controller
         $this->authorize('create', Permission::class);
 
         $params = $request->all();
-        $this->PermissionRepository->create($params);
+        $this->permissionRepository->create($params);
     }
 
     /**
@@ -56,7 +63,7 @@ class PermissionController extends Controller
         $this->authorize('update', $permission);
 
         $params = $request->all();
-        $this->PermissionRepository->create($params);
+        $this->permissionRepository->create($params);
     }
 
     /**

@@ -40,26 +40,40 @@ __webpack_require__.r(__webpack_exports__);
       t = _useI18n.t;
     var emitter = (0,vue__WEBPACK_IMPORTED_MODULE_3__.inject)('emitter');
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
+    var user = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)({});
+    var permissions = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
+    var fetchUser = function fetchUser() {
+      axios.get('users/' + props.id).then(function (response) {
+        user.value = response.data.data;
+      })["catch"](function (error) {
+        emitter.emit('show-notification', {
+          title: '',
+          text: t('errorOccur'),
+          variant: 'danger'
+        });
+      });
+    };
+    var fetchPermissions = function fetchPermissions() {
+      axios.get('permissions').then(function (response) {
+        permissions.value = response.data.data;
+      })["catch"](function (error) {
+        emitter.emit('show-notification', {
+          title: '',
+          text: t('errorOccur'),
+          variant: 'danger'
+        });
+      });
+    };
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onBeforeMount)(function () {
       // fetchCountries();
       // fetchStates();
+      fetchPermissions();
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       if (props.id) {
-        axios.get('users/' + props.id).then(function (response) {
-          user.value = response.data.data;
-        })["catch"](function (error) {
-          emitter.emit('show-notification', {
-            title: '',
-            text: t('errorOccur'),
-            variant: 'danger'
-          });
-        });
+        fetchUser();
       }
     });
-    var countries = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
-    var states = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
-    var user = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)({});
     var save = function save() {
       axios.patch('users/' + props.id, user.value).then(function (response) {
         emitter.emit('show-notification', {
@@ -81,12 +95,16 @@ __webpack_require__.r(__webpack_exports__);
       emitter: emitter,
       router: router,
       props: props,
-      countries: countries,
-      states: states,
       user: user,
+      permissions: permissions,
+      fetchUser: fetchUser,
+      fetchPermissions: fetchPermissions,
       save: save,
       get VButton() {
         return laravue_ui_components_src_components__WEBPACK_IMPORTED_MODULE_0__.VButton;
+      },
+      get VCheckbox() {
+        return laravue_ui_components_src_components__WEBPACK_IMPORTED_MODULE_0__.VCheckbox;
       },
       get VInput() {
         return laravue_ui_components_src_components__WEBPACK_IMPORTED_MODULE_0__.VInput;
@@ -191,15 +209,18 @@ var _hoisted_17 = {
   "class": "uppercase font-bold"
 };
 var _hoisted_18 = {
-  "class": "my-4 pt-6"
+  "class": "flex gap-2"
 };
 var _hoisted_19 = {
-  "class": "grid grid-cols-2"
+  "class": "my-4 pt-6"
 };
 var _hoisted_20 = {
-  "class": "mr-1"
+  "class": "grid grid-cols-2"
 };
 var _hoisted_21 = {
+  "class": "mr-1"
+};
+var _hoisted_22 = {
   "class": "ml-1"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -244,21 +265,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: role.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(role.name), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('permissions')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.permissions, function (permission) {
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('permissions')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.permissions, function (permission) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: permission.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.role.name), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my-4 pt-6\">\n        <div class=\"grid grid-cols-2\">\n          <div class=\"mr-1\">\n            <v-select v-model=\"user.country_id\" :placeholder=\"$t('selectOption')\" :options=\"countries\" variant=\"default\" :label=\"$t('country')\"></v-select>\n          </div>\n          <div class=\"mr-1\">\n            <v-input v-model=\"user.address\" maxlength=\"255\" :label=\"$t('address')\" />\n          </div>\n          <div class=\"ml-1\">\n            <v-input v-model=\"user.city\" maxlength=\"50\" :label=\"$t('city')\" />\n          </div>\n          <div class=\"ml-1 grid grid-cols-2\">\n            <div class=\"mr-1\">\n              <v-select v-model=\"user.state_id\" :placeholder=\"$t('selectOption')\" :options=\"states\" variant=\"default\" :label=\"$t('state')\"></v-select>\n            </div>\n            <div class=\"mr-1\">\n              <v-input v-model=\"user.postal_code\" maxlength=\"12\" :label=\"$t('postalCode')\" />\n            </div>\n          </div>\n        </div>\n      </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my-4 pt-6\">\n        <div class=\"grid grid-cols-2\">\n          <div class=\"mr-1\">\n            <v-input v-model=\"user.phone_number\" maxlength=\"12\" :label=\"$t('phone')\" />\n          </div>\n          <div class=\"ml-1\">\n            <v-input v-model=\"user.cell_phone_number\" maxlength=\"12\" :label=\"$t('cellPhoneNumber')\" />\n          </div>\n        </div>\n      </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VInput"], {
+      key: permission.id,
+      "class": "flex gap-1 place-items-center"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VCheckbox"], {
+      modelValue: $setup.user.permissions,
+      "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        return $setup.user.permissions = $event;
+      }),
+      trueValue: permission.id,
+      falseValue: "null"
+    }, null, 8 /* PROPS */, ["modelValue", "trueValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(permission.name), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my-4 pt-6\">\n        <div class=\"grid grid-cols-2\">\n          <div class=\"mr-1\">\n            <v-select v-model=\"user.country_id\" :placeholder=\"$t('selectOption')\" :options=\"countries\" variant=\"default\" :label=\"$t('country')\"></v-select>\n          </div>\n          <div class=\"mr-1\">\n            <v-input v-model=\"user.address\" maxlength=\"255\" :label=\"$t('address')\" />\n          </div>\n          <div class=\"ml-1\">\n            <v-input v-model=\"user.city\" maxlength=\"50\" :label=\"$t('city')\" />\n          </div>\n          <div class=\"ml-1 grid grid-cols-2\">\n            <div class=\"mr-1\">\n              <v-select v-model=\"user.state_id\" :placeholder=\"$t('selectOption')\" :options=\"states\" variant=\"default\" :label=\"$t('state')\"></v-select>\n            </div>\n            <div class=\"mr-1\">\n              <v-input v-model=\"user.postal_code\" maxlength=\"12\" :label=\"$t('postalCode')\" />\n            </div>\n          </div>\n        </div>\n      </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my-4 pt-6\">\n        <div class=\"grid grid-cols-2\">\n          <div class=\"mr-1\">\n            <v-input v-model=\"user.phone_number\" maxlength=\"12\" :label=\"$t('phone')\" />\n          </div>\n          <div class=\"ml-1\">\n            <v-input v-model=\"user.cell_phone_number\" maxlength=\"12\" :label=\"$t('cellPhoneNumber')\" />\n          </div>\n        </div>\n      </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VInput"], {
     modelValue: $setup.user.password,
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.user.password = $event;
     }),
     type: "password",
     id: "password",
     label: _ctx.$t('password')
-  }, null, 8 /* PROPS */, ["modelValue", "label"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VInput"], {
+  }, null, 8 /* PROPS */, ["modelValue", "label"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VInput"], {
     modelValue: $setup.user.password_confirmation,
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $setup.user.password_confirmation = $event;
     }),
     type: "password",

@@ -45,9 +45,9 @@
         <div>
           <h1 class="uppercase font-bold">{{ $t('permissions') }}</h1>
         </div>
-        <div>
-          <div v-for="permission in user.permissions" :key="permission.id">
-            {{ role.name }}
+        <div class="flex gap-2">
+          <div v-for="permission in permissions" :key="permission.id" class="flex gap-1 place-items-center">
+            <v-checkbox v-model="user.permissions" :trueValue="permission.id" falseValue="null" /> <label>{{ permission.name }}</label>
           </div>
         </div>
       </section>
@@ -97,7 +97,7 @@
 </template>
 
 <script setup>
-import { VButton, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
+import { VButton, VCheckbox, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
 import { fetchCurrentUser } from '../composites/user';
 import { useSessionStore } from '../../store/modules/session';
 import { onMounted, onBeforeMount, ref, defineProps } from 'vue';
@@ -116,31 +116,50 @@ const props = defineProps({
   },
 });
 
+const user = ref({});
+const permissions = ref([]);
+
+const fetchUser = function () {
+  axios
+    .get('users/' + props.id)
+    .then((response) => {
+      user.value = response.data.data;
+    })
+    .catch((error) => {
+      emitter.emit('show-notification', {
+        title: '',
+        text: t('errorOccur'),
+        variant: 'danger',
+      });
+    });
+};
+
+const fetchPermissions = function () {
+  axios
+    .get('permissions')
+    .then((response) => {
+      permissions.value = response.data.data;
+    })
+    .catch((error) => {
+      emitter.emit('show-notification', {
+        title: '',
+        text: t('errorOccur'),
+        variant: 'danger',
+      });
+    });
+};
+
 onBeforeMount(() => {
   // fetchCountries();
   // fetchStates();
+  fetchPermissions();
 });
 
 onMounted(() => {
   if (props.id) {
-    axios
-      .get('users/' + props.id)
-      .then((response) => {
-        user.value = response.data.data;
-      })
-      .catch((error) => {
-        emitter.emit('show-notification', {
-          title: '',
-          text: t('errorOccur'),
-          variant: 'danger',
-        });
-      });
+    fetchUser();
   }
 });
-
-const countries = ref([]);
-const states = ref([]);
-const user = ref({});
 
 const save = function () {
   axios

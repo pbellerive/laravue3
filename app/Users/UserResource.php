@@ -22,7 +22,7 @@ class UserResource extends BaseJsonResource
             'last_name' => $this->when($this->addField('last_name'), $this->last_name),
             'email' => $this->when($this->addField('email'), $this->email),
             'roles' => $this->when($this->addField('roles'), $this->roles),
-            'permissions' => $this->when($this->addField('permissions'), $this->permissions),
+            'permissions' => $this->when($this->addField('permissions'), $this->permissions->pluck('id')),
         ];
     }
 }
