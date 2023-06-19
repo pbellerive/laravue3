@@ -47,7 +47,7 @@
         </div>
         <div class="flex gap-2">
           <div v-for="permission in permissions" :key="permission.id" class="flex gap-1 place-items-center">
-            <v-checkbox v-model="user.permissions" :trueValue="permission.id" falseValue="null" /> <label>{{ permission.name }}</label>
+            <v-checkbox v-model="user.permissions" :trueValue="permission.id" falseValue="null" /> <label>{{ $t(permission.name) }}</label>
           </div>
         </div>
       </section>

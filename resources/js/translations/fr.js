@@ -43,6 +43,14 @@ const fr = {
   settings: 'Configuration',
   roles: 'Roles',
   permissions: 'Permissions',
+
+  can_view_users: 'Peut voir tous les utilisateurs',
+  can_create_users: 'Peut créer des utilisateurs',
+  can_update_users: 'Peut mettre à jours des utilisateurs',
+  can_update_permissions_users: 'Peut mettre à jours les permission des utilisateurs',
+  can_delete_users: 'Peut supprimer des utilisateurs',
+  can_restore_users: 'Peut restaurer des utilisateurs',
+  can_force_delete_users: 'Peut forcer la suppression des utilisateurs',
 };
 
 export default fr;
