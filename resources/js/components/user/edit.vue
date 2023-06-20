@@ -12,23 +12,17 @@
     <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-slate-700">
       <div class="grid grid-cols-2 my-4">
         <div class="mr-1">
-          <label for="firstName" class="block mb-2">{{ $t('firstName') }}</label>
-          <v-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" />
+          <v-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" :label="$t('firstName')" />
         </div>
         <div class="ml-1">
-          <label for="lastName" class="block mb-2">{{ $t('lastName') }}</label>
-          <v-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" />
+          <v-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" :label="$t('lastName')" />
         </div>
       </div>
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="my-6 mr-1">
-            <label for="email" class="block mb-2">{{ $t('email') }}</label>
-            <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" />
+            <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" :label="$t('email')" />
           </div>
-          <!-- <div class="my-6 ml-1">
-            <v-date-picker v-model="user.birth_date" :label="$t('birthDate')"> </v-date-picker>
-          </div> -->
         </div>
       </div>
       <section>
