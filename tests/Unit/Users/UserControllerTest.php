@@ -242,20 +242,17 @@ class UserControllerTest extends TestCase
         $response->assertForbidden();
     }
 
-    public function test_remove_user_role_has_admin()
+    public function test_remove_user_role_has_myself()
     {
-        $admin = User::factory()->create();
 
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $admin->assignRole('admin');
         $user->assignRole($role);
 
-        $response = $this->actingAs($admin)->json('delete', '/api/users/'. $user->id .'/role/' . $role->id);
+        $response = $this->actingAs($user)->json('delete', '/api/users/'. $user->id .'/role/' . $role->id);
 
-
-        $this->assertDatabaseMissing('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
+        $response->assertForbidden();
+        $this->assertDatabasehas('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
     }
-
 }

@@ -36,4 +36,20 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('permission_user', ['user_id' => $userToUpdate->id, 'permission_id' => $permission->id]);
     }
 
+    public function test_remove_user_role_has_admin()
+    {
+        $admin = User::factory()->create();
+
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+
+        $admin->assignRole('admin');
+        $user->assignRole($role);
+
+        $response = $this->actingAs($admin)->json('delete', '/api/users/'. $user->id .'/role/' . $role->id);
+
+
+        $this->assertDatabaseMissing('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
+    }
+
 }
