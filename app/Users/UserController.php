@@ -5,6 +5,7 @@ namespace App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Roles\Role;
 
 class UserController extends Controller
 {
@@ -50,4 +51,12 @@ class UserController extends Controller
 
         $this->userRepository->update($user, $params);
     }
+
+    public function removeRole(User $user, Role $role)
+    {
+        $this->authorize('updateRoles', $user);
+
+        $user->removeRole($role);
+    }
+
 }

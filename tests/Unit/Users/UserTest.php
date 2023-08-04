@@ -102,5 +102,17 @@ class UserTest extends TestCase
         $this->assertDatabaseMissing('permission_user', ['permission_id' => $permission->id, 'user_id' => $user->id]);
     }
 
+    public function test_user_remove_role()
+    {
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+
+        $user->assignRole($role);
+
+        $user->removeRole($role);
+
+        $this->assertDatabaseMissing('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
+
+    }
 
 }

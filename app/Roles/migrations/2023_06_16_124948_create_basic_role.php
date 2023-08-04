@@ -16,9 +16,18 @@ return new class () extends Migration {
             'name' => 'superadmin',
         ]);
 
-        Role::create([
+        $admin = Role::create([
             'name' => 'admin',
         ]);
+
+        $admin->assignPermission('can_view_users');
+        $admin->assignPermission('can_create_users');
+        $admin->assignPermission('can_update_users');
+        $admin->assignPermission('can_update_permissions_users');
+        $admin->assignPermission('can_update_roles_users');
+        $admin->assignPermission('can_delete_users');
+        $admin->assignPermission('can_restore_users');
+        $admin->assignPermission('can_force_delete_users');
 
         Role::create([
             'name' => 'user',

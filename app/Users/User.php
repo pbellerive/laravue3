@@ -104,6 +104,12 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->permissions()->detach($permission->id);
     }
 
+    public function removeRole($role)
+    {
+        $this->roles()->detach($role->id);
+    }
+
+
     public function roles()
     {
         return $this->belongsToMany('\App\Roles\Role');

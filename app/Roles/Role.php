@@ -18,7 +18,13 @@ class Role extends Model
 
     public function assignPermission($permission)
     {
-        $this->permissions()->attach($permission->id);
+        $model = $permission;
+
+        if (gettype($permission) === 'string') {
+            $model = \App\Permissions\Permission::where('name', '=', $permission)->first();
+        }
+
+        $this->permissions()->attach($model->id);
     }
 
     public function removePermission($permission)
