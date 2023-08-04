@@ -23,9 +23,9 @@
         </li>
 
         <li class="text-gray-500 py-2 md:py-3" :class="{ 'text-white': textColor('users'), 'text-center': !showLabel }">
-          <router-link to="/users">
+          <v-button to="/users" variant="link" class="w-full" data-testid="button.users">
             <font-awesome-icon :icon="['fas', 'people-group']" /> <span v-if="showLabel">{{ $t('A') }}</span>
-          </router-link>
+          </v-button>
         </li>
         <li class="text-gray-500 py-2 md:py-3" :class="{ 'text-white': textColor('preferences'), 'text-center': !showLabel }">
           <font-awesome-icon class="mr-1" icon="fa-solid fa-gear" /><span v-if="showLabel">{{ $t('settings') }}</span>
@@ -39,6 +39,7 @@
 import { useSessionStore } from '../../store/modules/session';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { VButton } from 'laravue-ui-components/src/components';
 
 let store = useSessionStore();
 let router = useRouter();

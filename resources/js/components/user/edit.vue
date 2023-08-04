@@ -12,16 +12,16 @@
     <div class="grid grid-cols-none grid-flow-row divide-y-2 divide-slate-700">
       <div class="grid grid-cols-2 my-4">
         <div class="mr-1">
-          <v-input v-model="user.first_name" id="firstName" placeholder="John" maxlength="255" :label="$t('firstName')" />
+          <v-input v-model="user.first_name" id="firstName" maxlength="255" :label="$t('firstName')" />
         </div>
         <div class="ml-1">
-          <v-input v-model="user.last_name" id="lastName" placeholder="Doe" maxlength="255" :label="$t('lastName')" />
+          <v-input v-model="user.last_name" id="lastName" maxlength="255" :label="$t('lastName')" />
         </div>
       </div>
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="my-6 mr-1">
-            <v-input v-model="user.email" id="email" placeholder="john.doe@email.com" :label="$t('email')" />
+            <v-input v-model="user.email" id="email" :label="$t('email')" />
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section v-if="showPermissions()" data-testid="section.permissions">
         <div>
           <h1 class="uppercase font-bold">{{ $t('permissions') }}</h1>
         </div>
@@ -45,37 +45,6 @@
           </div>
         </div>
       </section>
-      <!-- <div class="my-4 pt-6">
-        <div class="grid grid-cols-2">
-          <div class="mr-1">
-            <v-select v-model="user.country_id" :placeholder="$t('selectOption')" :options="countries" variant="default" :label="$t('country')"></v-select>
-          </div>
-          <div class="mr-1">
-            <v-input v-model="user.address" maxlength="255" :label="$t('address')" />
-          </div>
-          <div class="ml-1">
-            <v-input v-model="user.city" maxlength="50" :label="$t('city')" />
-          </div>
-          <div class="ml-1 grid grid-cols-2">
-            <div class="mr-1">
-              <v-select v-model="user.state_id" :placeholder="$t('selectOption')" :options="states" variant="default" :label="$t('state')"></v-select>
-            </div>
-            <div class="mr-1">
-              <v-input v-model="user.postal_code" maxlength="12" :label="$t('postalCode')" />
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="my-4 pt-6">
-        <div class="grid grid-cols-2">
-          <div class="mr-1">
-            <v-input v-model="user.phone_number" maxlength="12" :label="$t('phone')" />
-          </div>
-          <div class="ml-1">
-            <v-input v-model="user.cell_phone_number" maxlength="12" :label="$t('cellPhoneNumber')" />
-          </div>
-        </div>
-      </div> -->
       <div class="my-4 pt-6">
         <div class="grid grid-cols-2">
           <div class="mr-1">
@@ -102,6 +71,7 @@ import { useRouter } from 'vue-router';
 const { t } = useI18n({});
 const emitter = inject('emitter');
 const router = useRouter();
+const session = useSessionStore();
 
 const props = defineProps({
   id: {
@@ -113,9 +83,14 @@ const props = defineProps({
 const user = ref({});
 const permissions = ref([]);
 
+const showPermissions = function () {
+  return user.value.id != session.currentUser.id && session.currentUser.isAdmin;
+};
+
 const fetchUser = function () {
+  const id = props.id || session.currentUser.id;
   axios
-    .get('users/' + props.id)
+    .get('users/' + id)
     .then((response) => {
       user.value = response.data.data;
     })
@@ -150,14 +125,15 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  if (props.id) {
-    fetchUser();
-  }
+  fetchUser();
+  // if (props.id) {
+  // }
 });
 
 const save = function () {
+  const id = props.id || session.currentUser.id;
   axios
-    .patch('users/' + props.id, user.value)
+    .patch('users/' + id, user.value)
     .then((response) => {
       emitter.emit('show-notification', {
         title: t('saving'),

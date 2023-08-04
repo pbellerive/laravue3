@@ -21581,7 +21581,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _store_modules_session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/modules/session */ "./resources/js/store/modules/session.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+/* harmony import */ var laravue_ui_components_src_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! laravue-ui-components/src/components */ "./node_modules/laravue-ui-components/src/components.js");
+
 
 
 
@@ -21591,7 +21593,7 @@ __webpack_require__.r(__webpack_exports__);
     var __expose = _ref.expose;
     __expose();
     var store = (0,_store_modules_session__WEBPACK_IMPORTED_MODULE_0__.useSessionStore)();
-    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     var showLabel = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var textColor = function textColor($name) {
       return router.currentRoute.value.name == $name;
@@ -21620,7 +21622,10 @@ __webpack_require__.r(__webpack_exports__);
       },
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
       get useRouter() {
-        return vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter;
+        return vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter;
+      },
+      get VButton() {
+        return laravue_ui_components_src_components__WEBPACK_IMPORTED_MODULE_2__.VButton;
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -22334,7 +22339,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
   }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heroicon name: outline/menu "), _hoisted_7])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" header menu items here ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VButton"], {
     to: "/profile",
-    variant: "link"
+    variant: "link",
+    "data-testid": "button.profile"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_10];
@@ -22500,8 +22506,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'text-white': $setup.textColor('users'),
       'text-center': !$setup.showLabel
     }])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/users"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VButton"], {
+    to: "/users",
+    variant: "link",
+    "class": "w-full",
+    "data-testid": "button.users"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {

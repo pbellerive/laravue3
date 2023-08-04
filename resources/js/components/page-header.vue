@@ -23,7 +23,7 @@
           <!-- header menu items here -->
         </nav>
         <div v-if="show" class="hidden lg:flex lg:flex-1 justify-end gap-3">
-          <v-button to="/profile" variant="link">
+          <v-button to="/profile" variant="link" data-testid="button.profile">
             <i class="fas fa-user-circle text-gray-300 hover:text-white"></i>
           </v-button>
           <v-button @click="logout()" variant="link">
