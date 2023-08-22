@@ -22930,7 +22930,17 @@ var en = {
   //
   settings: 'Settings',
   roles: 'Roles',
-  permissions: 'Permissions'
+  role: {
+    remove: 'Remove role'
+  },
+  permissions: 'Permissions',
+  can_view_users: 'Can view all users',
+  can_create_users: 'Can create user',
+  can_update_users: 'Can update users',
+  can_update_permissions_users: 'Can update users permissions',
+  can_delete_users: 'Can delete users',
+  can_restore_users: 'Can restore users',
+  can_force_delete_users: 'Can force users deletetion'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (en);
 
@@ -22991,6 +23001,9 @@ var fr = {
   settings: 'Configuration',
   roles: 'Roles',
   permissions: 'Permissions',
+  role: {
+    remove: 'Retirer le role'
+  },
   can_view_users: 'Peut voir tous les utilisateurs',
   can_create_users: 'Peut créer des utilisateurs',
   can_update_users: 'Peut mettre à jours des utilisateurs',

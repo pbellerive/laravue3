@@ -44,6 +44,9 @@ const fr = {
   roles: 'Roles',
   permissions: 'Permissions',
 
+  role: {
+    remove: 'Retirer le role',
+  },
   can_view_users: 'Peut voir tous les utilisateurs',
   can_create_users: 'Peut créer des utilisateurs',
   can_update_users: 'Peut mettre à jours des utilisateurs',

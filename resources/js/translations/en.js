@@ -41,7 +41,19 @@ const en = {
   //
   settings: 'Settings',
   roles: 'Roles',
+
+  role: {
+    remove: 'Remove role',
+  },
   permissions: 'Permissions',
+
+  can_view_users: 'Can view all users',
+  can_create_users: 'Can create user',
+  can_update_users: 'Can update users',
+  can_update_permissions_users: 'Can update users permissions',
+  can_delete_users: 'Can delete users',
+  can_restore_users: 'Can restore users',
+  can_force_delete_users: 'Can force users deletetion',
 };
 
 export default en;

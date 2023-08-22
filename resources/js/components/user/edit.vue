@@ -29,9 +29,24 @@
         <div>
           <h1 class="uppercase font-bold">{{ $t('roles') }}</h1>
         </div>
-        <div>
-          <div v-for="role in user.roles" :key="role.id">
-            {{ role.name }}
+        <div class="mt-3">
+          <div class="flex gap-3">
+            <div>
+              <v-rich-select variant="default" :options="roles" v-model="roleToAdd" valueOptionAttribute="object" textOptionAttribute="name" :label="t('roles')"></v-rich-select>
+            </div>
+            <div>
+              <v-button variant="primary" @click="addRole">{{ t('add') }}</v-button>
+            </div>
+          </div>
+          <div class="flex gap-3 divide-x-2 mt-2">
+            <div v-for="role in user.roles" :key="role.id" class="px-2">
+              <div>
+                {{ role.name }}
+                <v-button @click="removeRole(role)" variant="link">
+                  <font-awesome-icon icon="fa-solid fa-trash" class="text-red-500 text-xs"></font-awesome-icon>
+                </v-button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -56,11 +71,12 @@
         </div>
       </div>
     </div>
+    <v-modal ref="deleteModalConfirmation" :title="$t('role.remove')" :message="$t('cannotBeUndone')"> </v-modal>
   </div>
 </template>
 
 <script setup>
-import { VButton, VCheckbox, VInput, VSelect, VDatePicker } from 'laravue-ui-components/src/components';
+import { VButton, VCheckbox, VInput, VModal, VRichSelect } from 'laravue-ui-components/src/components';
 import { fetchCurrentUser } from '../composites/user';
 import { useSessionStore } from '../../store/modules/session';
 import { onMounted, onBeforeMount, ref, defineProps } from 'vue';
@@ -81,7 +97,25 @@ const props = defineProps({
 });
 
 const user = ref({});
+const roleToAdd = ref({});
 const permissions = ref([]);
+const roles = ref([]);
+const deleteModalConfirmation = ref(null);
+
+const addRole = function () {
+  axios
+    .post('users/' + user.value.id + '/role/' + roleToAdd.value.id)
+    .then((response) => {
+      user.value.roles.push(roleToAdd.value);
+    })
+    .catch((error) => {
+      emitter.emit('show-notification', {
+        title: '',
+        text: t('errorOccur'),
+        variant: 'danger',
+      });
+    });
+};
 
 const showPermissions = function () {
   return user.value.id != session.currentUser.id && session.currentUser.isAdmin;
@@ -118,9 +152,49 @@ const fetchPermissions = function () {
     });
 };
 
+const fetchRoles = function () {
+  axios
+    .get('roles')
+    .then((response) => {
+      roles.value = response.data.data;
+    })
+    .catch((error) => {
+      emitter.emit('show-notification', {
+        title: '',
+        text: t('errorOccur'),
+        variant: 'danger',
+      });
+    });
+};
+
+const removeRole = function (role) {
+  deleteModalConfirmation.value.open().then((result) => {
+    if (result.isOk) {
+      axios
+        .delete('users/' + user.value.id + '/role/' + role.id)
+        .then((response) => {
+          const i = _.findIndex(user.value.roles, (obj) => {
+            return obj.id == role.id;
+          });
+          user.value.roles.splice(i, 1);
+          emitter.emit('show-notification', {
+            title: '',
+            text: t('successfulSaving', { name: 'role' }),
+            variant: 'success',
+          });
+        })
+        .catch((error) => {
+          // let message = this.buildErrorMessage(error.response);
+          // this.$showMessage(message, 'danger');
+        });
+    }
+  });
+};
+
 onBeforeMount(() => {
   // fetchCountries();
   // fetchStates();
+  fetchRoles();
   fetchPermissions();
 });
 

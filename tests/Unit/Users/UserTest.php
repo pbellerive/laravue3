@@ -112,7 +112,6 @@ class UserTest extends TestCase
         $user->removeRole($role);
 
         $this->assertDatabaseMissing('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
-
     }
 
 }

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    protected $roleRepository;
+
+    public function __construct(RoleRepository $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-         return new RoleResourceCollection($this->RoleRepository->get());
+        return new RoleResourceCollection($this->roleRepository->get());
     }
 
     /**
@@ -28,7 +36,7 @@ class RoleController extends Controller
         $this->authorize('create', Role::class);
 
         $params = $request->all();
-        $this->RoleRepository->create($params);
+        $this->roleRepository->create($params);
     }
 
     /**
@@ -56,7 +64,7 @@ class RoleController extends Controller
         $this->authorize('update', $role);
 
         $params = $request->all();
-        $this->RoleRepository->create($params);
+        $this->roleRepository->create($params);
     }
 
     /**

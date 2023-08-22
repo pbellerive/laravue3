@@ -31,8 +31,11 @@ Route::middleware('stateless')->group(function ($router) {
     Route::post('logout', '\Laravue3\Stateless\Controllers\LoginController@logout');
 
     Route::apiResource('permissions', \App\Permissions\PermissionController::class, ['only' => ['index']]);
+    Route::apiResource('roles', \App\Roles\RoleController::class, ['only' => ['index']]);
 
     Route::delete('users/{user}/role/{role}', '\App\Users\UserController@removeRole');
+    Route::post('users/{user}/role/{role}', '\App\Users\UserController@assignRole');
+
     Route::apiResource('users', \App\Users\UserController::class, ['only' => ['index', 'show', 'update']]);
     Route::get('user', '\App\Users\UserController@getCurrentUser');
 });

@@ -59,4 +59,11 @@ class UserController extends Controller
         $user->removeRole($role);
     }
 
+    public function assignRole(User $user, Role $role)
+    {
+        $this->authorize('updateRoles', $user);
+
+        $user->assignRole($role);
+    }
+
 }
