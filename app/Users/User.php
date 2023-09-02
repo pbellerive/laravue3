@@ -65,17 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->permissions()->attach($model->id);
     }
 
-    public function assignRole($role)
-    {
-        $model = $role;
-
-        if (gettype($role) === 'string') {
-            $model = \App\Roles\Role::where('name', '=', $role)->first();
-        }
-
-        $this->roles()->attach($model->id);
-    }
-
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
@@ -103,12 +92,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->permissions()->detach($permission->id);
     }
-
-    public function removeRole($role)
-    {
-        $this->roles()->detach($role->id);
-    }
-
 
     public function roles()
     {

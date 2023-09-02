@@ -1,7 +1,7 @@
 <template>
   <div class="container max-w-7xl items-center mx-auto">
     <header>
-      <h1 class="block text-center my-4 text-5xl">{{ $t('manageProfile', { name: user.fullName }) }}</h1>
+      <h1 class="block text-center my-4 text-2xl">{{ $t('manageProfile', { name: user.fullName }) }}</h1>
       <div class="grid grid-cols-none">
         <div class="inline-grid justify-items-end">
           <v-button @click="save()" variant="primary" class=""> <i class="fas fa-save pr-1"></i>{{ $t('save') }} </v-button>
@@ -106,7 +106,7 @@ const addRole = function () {
   axios
     .post('users/' + user.value.id + '/role/' + roleToAdd.value.id)
     .then((response) => {
-      user.value.roles.push(roleToAdd.value);
+      user.value.roles = response.data.data;
     })
     .catch((error) => {
       emitter.emit('show-notification', {

@@ -22,7 +22,7 @@ class UserControllerTest extends TestCase
     public function test_update_user_permissions_as_superadmin()
     {
         $user = User::factory()->create();
-        $user->assignRole('superadmin');
+        $this->userRepository->assignRole($user, 'superadmin');
 
         $userToUpdate = User::factory()->create();
 
@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $admin->assignRole('admin');
+        $this->userRepository->assignRole($admin, 'admin');
 
         $response = $this->actingAs($admin)->json('post', '/api/users/'. $user->id .'/role/' . $role->id);
 
@@ -58,8 +58,8 @@ class UserControllerTest extends TestCase
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $admin->assignRole('admin');
-        $user->assignRole($role);
+        $this->userRepository->assignRole($admin, 'admin');
+        $this->userRepository->assignRole($user, $role);
 
         $response = $this->actingAs($admin)->json('delete', '/api/users/'. $user->id .'/role/' . $role->id);
 

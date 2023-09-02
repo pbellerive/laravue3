@@ -6,6 +6,27 @@ use Illuminate\Support\Facades\Validator;
 
 class UserRepository
 {
+    public function assignRole($user, $role)
+    {
+        $model = $role;
+
+        if (gettype($role) === 'string') {
+            $model = \App\Roles\Role::where('name', '=', $role)->first();
+        }
+
+        //can't add twice
+        if ($user->hasRole($model->name)) {
+            return;
+        }
+
+        $user->roles()->attach($model->id);
+    }
+
+    public function removeRole($user, $role)
+    {
+        $user->roles()->detach($role->id);
+    }
+
     public function find($userId)
     {
         return User::find($userId);

@@ -11,12 +11,21 @@ use App\Permissions\Permission;
 
 class UserTest extends TestCase
 {
+    protected $userRepository;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->userRepository = new \App\Users\UserRepository();
+    }
+
     public function test_user_assign_user_role()
     {
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
         $this->assertDatabaseHas('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
     }
@@ -26,7 +35,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $role = 'user';
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
         $roleModel = Role::where('name', '=', 'user')->first();
 
@@ -38,7 +47,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
         $this->assertTrue($user->hasRole($role->name));
     }
@@ -49,7 +58,7 @@ class UserTest extends TestCase
         $role = Role::factory()->create();
         $role2 = Role::factory()->create();
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
         $this->assertTrue(!$user->hasRole($role2->name));
     }
@@ -63,7 +72,7 @@ class UserTest extends TestCase
 
         $role->assignPermission($permission);
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
         $this->assertTrue($user->hasPermission($permission->name));
     }
@@ -107,9 +116,9 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $role = Role::factory()->create();
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
 
-        $user->removeRole($role);
+        $this->userRepository->removeRole($role);
 
         $this->assertDatabaseMissing('role_user', ['role_id' => $role->id, 'user_id' => $user->id]);
     }

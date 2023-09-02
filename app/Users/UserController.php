@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Roles\Role;
+use App\Roles\RoleResourceCollection;
 
 class UserController extends Controller
 {
@@ -56,14 +57,16 @@ class UserController extends Controller
     {
         $this->authorize('updateRoles', $user);
 
-        $user->removeRole($role);
+        $this->userRepository->removeRole($user, $role);
     }
 
     public function assignRole(User $user, Role $role)
     {
         $this->authorize('updateRoles', $user);
 
-        $user->assignRole($role);
+        $this->userRepository->assignRole($user, $role);
+
+        return new RoleResourceCollection($user->roles);
     }
 
 }

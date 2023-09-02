@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Users\User;
+use App\Users\UserRepository;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
+        // $faker = \Faker\Factory::create();
+        $userRepository = new UserRepository();
 
         $admin = User::create([
             'first_name' =>  'superadmin',
@@ -22,8 +24,8 @@ class UserSeeder extends Seeder
             'email' => 'user@laravue.test',
             'password' => password_hash('123456', PASSWORD_BCRYPT),
         ]);
-
-        $admin->assignRole(\App\Roles\Role::where('name', '=', 'superadmin')->first());
+        $superadminRole = \App\Roles\Role::where('name', '=', 'superadmin')->first();
+        $userRepository->assignRole($admin, $superadminRole);
 
         User::factory()->count(5)->create([
             'password' => password_hash('123456', PASSWORD_BCRYPT),

@@ -104,7 +104,7 @@ class UserRepositoryTest extends TestCase
     public function test_update_user_permissions()
     {
         $user = User::factory()->create();
-        $user->assignRole('superadmin');
+        $this->userRepository->assignRole($user, 'superadmin');
 
         $userToUpdate = User::factory()->create();
 

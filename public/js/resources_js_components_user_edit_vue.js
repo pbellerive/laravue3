@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
     var deleteModalConfirmation = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
     var addRole = function addRole() {
       axios.post('users/' + user.value.id + '/role/' + roleToAdd.value.id).then(function (response) {
-        user.value.roles.push(roleToAdd.value);
+        user.value.roles = response.data.data;
       })["catch"](function (error) {
         emitter.emit('show-notification', {
           title: '',
@@ -221,7 +221,7 @@ var _hoisted_1 = {
   "class": "container max-w-7xl items-center mx-auto"
 };
 var _hoisted_2 = {
-  "class": "block text-center my-4 text-5xl"
+  "class": "block text-center my-4 text-2xl"
 };
 var _hoisted_3 = {
   "class": "grid grid-cols-none"
